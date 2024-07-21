@@ -6,7 +6,13 @@ public class Main {
             /* used to make GUI more thread safe */
             @Override
             public void run() {
-                new TextEditorGUI().setVisible(true);
+                try {
+                    UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
+                    new TextEditorGUI().setVisible(true);
+                }
+                catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
