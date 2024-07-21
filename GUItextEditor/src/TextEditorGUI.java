@@ -12,7 +12,8 @@ public class TextEditorGUI extends JFrame {
     }
 
     private void addGuiComponents() {
-        this.addToolBar();
+        addToolBar();
+        addTextArea();
     }
 
     private void addToolBar() {
@@ -47,7 +48,16 @@ public class TextEditorGUI extends JFrame {
         JMenuItem saveAsMenuItem = new JMenuItem("Save As");
         fileMenu.add(saveAsMenuItem);
 
+        // "exit" functionality
+        JMenuItem exitMenuItem = new JMenuItem("Exit");
+        fileMenu.add(exitMenuItem);
+
         return fileMenu;
+    }
+
+    private void addTextArea() {
+        JTextArea textArea = new JTextArea();
+        add(textArea, BorderLayout.CENTER);
     }
 
 }
