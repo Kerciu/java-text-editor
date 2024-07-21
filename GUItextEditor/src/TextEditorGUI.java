@@ -15,7 +15,7 @@ public class TextEditorGUI extends JFrame {
     private JTextArea textArea;
 
     public TextEditorGUI() {
-        super("TextEditor");
+        super("Text Editor");
         setSize(480, 500);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -75,12 +75,33 @@ public class TextEditorGUI extends JFrame {
 
     private void executeNewFunctionality(JMenu fileMenu) {
         JMenuItem newMenuItem = new JMenuItem("New");
+
+
+        // "new" resets everything
+        newMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // set header title
+                setTitle("Text Editor");
+                // set text area
+                textArea.setText("");
+            }
+        });
+
         fileMenu.add(newMenuItem);
     }
 
     private void executeOpenFunctionality(JMenu fileMenu) {
         JMenuItem openMenuItem = new JMenuItem("Open");
         fileMenu.add(openMenuItem);
+
+        openMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                fileChooser.showOpenDialog(TextEditorGUI.this);
+            }
+        });
     }
 
     private void executeSaveFunctionality(JMenu fileMenu) {
