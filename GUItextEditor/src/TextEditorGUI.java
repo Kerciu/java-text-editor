@@ -5,9 +5,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
+import java.io.*;
+import java.util.concurrent.ExecutionException;
 
 public class TextEditorGUI extends JFrame {
     // file explorer
@@ -98,8 +97,29 @@ public class TextEditorGUI extends JFrame {
         openMenuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 fileChooser.showOpenDialog(TextEditorGUI.this);
+                try {
+                    File selectedFile = fileChooser.getSelectedFile();
+                    setTitle(selectedFile.getName());
+
+                    // read the file
+                    FileReader fileReader = new FileReader(selectedFile);
+                    BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+                    // store the text in a text area
+                    StringBuilder stringBuilder = new StringBuilder();
+                    String readText;
+                    while ((readText = bufferedReader.readLine()) != null) {
+                        // checks if there are lines to read in a text file
+                        stringBuilder.append(readText + "\n");
+                    }
+
+                    // update gui text area
+                    textArea.setText(stringBuilder.toString());
+
+                } catch (Exception e2) {
+                    e2.printStackTrace();
+                }
             }
         });
     }
@@ -121,19 +141,19 @@ public class TextEditorGUI extends JFrame {
 
                 try {
                     // if no txt extension, we need to append it into file
-                    File choosenFile = fileChooser.getSelectedFile();
-                    String fileName = choosenFile.getName();
+                    File selectedFile = fileChooser.getSelectedFile();
+                    String fileName = selectedFile.getName();
                     Boolean isTxtExtension = (fileName.substring(fileName.length() - 4).equalsIgnoreCase(".txt"));
 
                     if (!isTxtExtension) {
-                        choosenFile = new File(choosenFile.getAbsoluteFile() + ".txt");
+                        selectedFile = new File(selectedFile.getAbsoluteFile() + ".txt");
                     }
 
                     // create new file
-                    choosenFile.createNewFile();
+                    selectedFile.createNewFile();
 
                     // supply file with user-typed contents
-                    FileWriter fileWriter = new FileWriter(choosenFile);
+                    FileWriter fileWriter = new FileWriter(selectedFile);
                     BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
                     bufferedWriter.write(textArea.getText());
 
