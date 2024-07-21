@@ -5,11 +5,14 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 
 public class TextEditorGUI extends JFrame {
     // file explorer
     private JFileChooser fileChooser;
+    private JTextArea textArea;
 
     public TextEditorGUI() {
         super("TextEditor");
@@ -66,7 +69,7 @@ public class TextEditorGUI extends JFrame {
     }
 
     private void addTextArea() {
-        JTextArea textArea = new JTextArea();
+        textArea = new JTextArea();
         add(textArea, BorderLayout.CENTER);
     }
 
@@ -92,7 +95,39 @@ public class TextEditorGUI extends JFrame {
         saveAsMenuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 fileChooser.showSaveDialog(TextEditorGUI.this);
+
+                try {
+                    // if no txt extension, we need to append it into file
+                    File choosenFile = fileChooser.getSelectedFile();
+                    String fileName = choosenFile.getName();
+                    Boolean isTxtExtension = (fileName.substring(fileName.length() - 4).equalsIgnoreCase(".txt"));
+
+                    if (!isTxtExtension) {
+                        choosenFile = new File(choosenFile.getAbsoluteFile() + ".txt");
+                    }
+
+                    // create new file
+                    choosenFile.createNewFile();
+
+                    // supply file with user-typed contents
+                    FileWriter fileWriter = new FileWriter(choosenFile);
+                    BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+                    bufferedWriter.write(textArea.getText());
+
+                    bufferedWriter.close();
+                    fileWriter.close();
+
+                    // update title header of gui to the saved text file
+                    setTitle(fileName);
+
+                    // show message dialog
+                    JOptionPane.showMessageDialog(TextEditorGUI.this, "Successfully saved file as "+fileName);
+
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
             }
         });
     }
