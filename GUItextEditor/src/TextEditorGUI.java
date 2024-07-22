@@ -17,6 +17,7 @@ public class TextEditorGUI extends JFrame {
     private JTextArea textArea;
     private FileMenu fileMenu;
     private EditMenu editMenu;
+    private FormatMenu formatMenu;
 
     public TextEditorGUI() {
         super("Text Editor");
@@ -48,6 +49,7 @@ public class TextEditorGUI extends JFrame {
         // ADD MENUS
         addFileMenu(menuBar);
         addEditMenu(menuBar);
+        addFormatMenu(menuBar);
 
         add(toolBar, BorderLayout.NORTH);
     }
@@ -65,5 +67,10 @@ public class TextEditorGUI extends JFrame {
     private void addEditMenu(JMenuBar menuBar) {
         editMenu = new EditMenu(this, textArea);
         menuBar.add(editMenu.getEditMenu());
+    }
+
+    private void addFormatMenu(JMenuBar menuBar) {
+        formatMenu = new FormatMenu(this);
+        menuBar.add(formatMenu.getFormatMenu());
     }
 }
