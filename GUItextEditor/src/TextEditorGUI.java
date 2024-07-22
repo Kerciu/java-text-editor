@@ -1,7 +1,10 @@
 import org.w3c.dom.Text;
 
 import javax.swing.*;
+import javax.swing.event.UndoableEditEvent;
+import javax.swing.event.UndoableEditListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.undo.UndoManager;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,6 +16,7 @@ public class TextEditorGUI extends JFrame {
     private JFileChooser fileChooser;
     private JTextArea textArea;
     private FileMenu fileMenu;
+    private EditMenu editMenu;
 
     public TextEditorGUI() {
         super("Text Editor");
@@ -54,12 +58,12 @@ public class TextEditorGUI extends JFrame {
     }
 
     private void addFileMenu(JMenuBar menuBar) {
-        FileMenu fileMenu = new FileMenu(this, textArea, fileChooser);
+        fileMenu = new FileMenu(this, textArea, fileChooser);
         menuBar.add(fileMenu.getFileMenu());
     }
 
     private void addEditMenu(JMenuBar menuBar) {
-        EditMenu editMenu = new EditMenu(this, textArea);
+        editMenu = new EditMenu(this, textArea);
         menuBar.add(editMenu.getEditMenu());
     }
 }

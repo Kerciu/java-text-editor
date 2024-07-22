@@ -23,7 +23,6 @@ public class FileMenuOpener {
     public void newFile() {
         JMenuItem newMenuItem = new JMenuItem("New");
 
-
         // "new" resets everything
         newMenuItem.addActionListener(new ActionListener() {
             @Override
