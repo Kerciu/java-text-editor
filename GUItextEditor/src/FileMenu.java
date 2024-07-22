@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 
-public class FileMenuHandler {
+public class FileMenu {
     private TextEditorGUI textEditorGUI;
     private JTextArea textArea;
     private JFileChooser fileChooser;
@@ -14,7 +14,7 @@ public class FileMenuHandler {
     private FileMenuSaver fileMenuSaver;
     private File workingFile;
 
-    FileMenuHandler(TextEditorGUI textEditorGUI, JTextArea textArea, JFileChooser fileChooser) {
+    FileMenu(TextEditorGUI textEditorGUI, JTextArea textArea, JFileChooser fileChooser) {
         this.textEditorGUI = textEditorGUI;
         this.textArea = textArea;
         this.fileChooser = fileChooser;
