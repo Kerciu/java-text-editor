@@ -6,19 +6,12 @@ import java.awt.event.ActionListener;
 import java.io.*;
 
 public class FileMenu {
-    private TextEditorGUI textEditorGUI;
-    private JTextArea textArea;
-    private JFileChooser fileChooser;
     private JMenu fileMenu;
     private FileMenuExecuter fileMenuExecuter;
-    private File workingFile;
 
     FileMenu(TextEditorGUI textEditorGUI, JTextArea textArea, JFileChooser fileChooser) {
-        this.textEditorGUI = textEditorGUI;
-        this.textArea = textArea;
-        this.fileChooser = fileChooser;
         fileMenu = new JMenu("File");
-        fileMenuExecuter = new FileMenuExecuter(textEditorGUI, fileChooser, textArea, fileMenu, workingFile);
+        fileMenuExecuter = new FileMenuExecuter(textEditorGUI, fileChooser, textArea, fileMenu);
         addFileMenuItems();
     }
 

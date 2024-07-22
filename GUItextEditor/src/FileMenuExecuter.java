@@ -10,12 +10,12 @@ public class FileMenuExecuter {
     private JMenu fileMenu;
     private File workingFile;
 
-    FileMenuExecuter(TextEditorGUI textEditorGUI, JFileChooser fileChooser, JTextArea textArea, JMenu fileMenu, File workingFile) {
+    FileMenuExecuter(TextEditorGUI textEditorGUI, JFileChooser fileChooser, JTextArea textArea, JMenu fileMenu) {
         this.textEditorGUI = textEditorGUI;
         this.fileChooser = fileChooser;
         this.textArea = textArea;
         this.fileMenu = fileMenu;
-        this.workingFile = workingFile;
+        this.workingFile = null;
     }
 
     public void newFile() {
