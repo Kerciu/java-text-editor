@@ -86,6 +86,15 @@ public class FileMenuOpener {
 
     public void exitFile() {
         JMenuItem exitMenuItem = new JMenuItem("Exit");
+
+        exitMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // dispose of gui
+                textEditorGUI.dispose();
+            }
+        });
+
         fileMenu.add(exitMenuItem);
     }
 }

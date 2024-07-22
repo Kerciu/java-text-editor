@@ -28,7 +28,8 @@ public class FileMenuSaver {
             public void actionPerformed(ActionEvent e) {
                 // if workingFile == null perform saveAs functinality
                 if (workingFile == null) saveMenuItem.doClick();
-
+                if (workingFile == null) return;
+                
                 try {
                     // write to working file
                     FileWriter fileWriter = new FileWriter(workingFile);
