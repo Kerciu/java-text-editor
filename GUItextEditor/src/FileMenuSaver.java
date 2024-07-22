@@ -4,6 +4,7 @@ import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.util.concurrent.ExecutionException;
 
 public class FileMenuSaver {
     private TextEditorGUI textEditorGUI;
@@ -12,7 +13,7 @@ public class FileMenuSaver {
     private JMenu fileMenu;
     private File workingFile;
 
-    FileMenuSaver(TextEditorGUI textEditorGUI, JFileChooser fileChooser, JTextArea textArea, JMenu fileMenu, File workingFile;) {
+    FileMenuSaver(TextEditorGUI textEditorGUI, JFileChooser fileChooser, JTextArea textArea, JMenu fileMenu, File workingFile) {
         this.textEditorGUI = textEditorGUI;
         this.fileChooser = fileChooser;
         this.textArea = textArea;
@@ -25,7 +26,20 @@ public class FileMenuSaver {
         saveMenuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                // if workingFile == null perform saveAs functinality
+                if (workingFile == null) saveMenuItem.doClick();
 
+                try {
+                    // write to working file
+                    FileWriter fileWriter = new FileWriter(workingFile);
+                    BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+                    bufferedWriter.write(textArea.getText());
+                    bufferedWriter.close();
+                    fileWriter.close();
+
+                } catch(Exception e1) {
+                    e1.printStackTrace();
+                }
             }
         });
         fileMenu.add(saveMenuItem);

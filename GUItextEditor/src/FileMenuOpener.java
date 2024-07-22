@@ -74,8 +74,8 @@ public class FileMenuOpener {
                     // update gui text area
                     textArea.setText(stringBuilder.toString());
 
-                    fileReader.close();
                     bufferedReader.close();
+                    fileReader.close();
 
                 } catch (Exception e2) {
                     e2.printStackTrace();

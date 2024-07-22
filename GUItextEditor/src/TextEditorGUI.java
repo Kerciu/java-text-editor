@@ -22,7 +22,7 @@ public class TextEditorGUI extends JFrame {
 
         // fileChooser set up
         fileChooser = new JFileChooser();
-        fileChooser.setCurrentDirectory(new File("src/assets"));
+        fileChooser.setCurrentDirectory(new File("GUItextEditor/src/assets"));
         fileChooser.setFileFilter(new FileNameExtensionFilter("Text Files", "txt"));
 
         addGuiComponents();
