@@ -10,8 +10,7 @@ public class FileMenu {
     private JTextArea textArea;
     private JFileChooser fileChooser;
     private JMenu fileMenu;
-    private FileMenuOpener fileMenuOpener;
-    private FileMenuSaver fileMenuSaver;
+    private FileMenuExecuter fileMenuExecuter;
     private File workingFile;
 
     FileMenu(TextEditorGUI textEditorGUI, JTextArea textArea, JFileChooser fileChooser) {
@@ -19,8 +18,7 @@ public class FileMenu {
         this.textArea = textArea;
         this.fileChooser = fileChooser;
         fileMenu = new JMenu("File");
-        fileMenuOpener = new FileMenuOpener(textEditorGUI, fileChooser, textArea, fileMenu, workingFile);
-        fileMenuSaver = new FileMenuSaver(textEditorGUI, fileChooser, textArea, fileMenu, workingFile);
+        fileMenuExecuter = new FileMenuExecuter(textEditorGUI, fileChooser, textArea, fileMenu, workingFile);
         addFileMenuItems();
     }
 
@@ -30,14 +28,14 @@ public class FileMenu {
 
     private void addFileMenuItems() {
         // "new file" functionality
-        fileMenuOpener.newFile();
+        fileMenuExecuter.newFile();
         // "open file" functionality
-        fileMenuOpener.openFile();
+        fileMenuExecuter.openFile();
         // "save" functionality
-        fileMenuSaver.saveFile();
+        fileMenuExecuter.saveFile();
         // "save as" functionality
-        fileMenuSaver.saveAsFile();
+        fileMenuExecuter.saveAsFile();
         // "exit" functionality
-        fileMenuOpener.exitFile();
+        fileMenuExecuter.exitFile();
     }
 }

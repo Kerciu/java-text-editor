@@ -13,11 +13,14 @@ public class EditMenu {
     // manage undo and redo
     private UndoManager undoManager;
 
+    private EditMenuExecuter editMenuExecuter;
+
     EditMenu(TextEditorGUI textEditorGUI, JTextArea textArea) {
         this.textEditorGUI = textEditorGUI;
         this.textArea = textArea;
         this.undoManager = new UndoManager();
         editMenu = new JMenu("Edit");
+        editMenuExecuter = new EditMenuExecuter(this, undoManager);
 
         addEditListener();
         addUndoRedoOptions();
@@ -28,35 +31,8 @@ public class EditMenu {
     }
 
     private void addUndoRedoOptions() {
-        undo();
-        redo();
-    }
-
-    public void undo() {
-        JMenuItem undoMenuItem = new JMenuItem("Undo");
-        undoMenuItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // if there are any edits undo them
-                if(undoManager.canUndo()) {
-                    undoManager.undo();
-                }
-            }
-        });
-        editMenu.add(undoMenuItem);
-    }
-
-    public void redo() {
-        JMenuItem redoMenuItem = new JMenuItem("Redo");
-        redoMenuItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (undoManager.canRedo()) {
-                    undoManager.redo();
-                }
-            }
-        });
-        editMenu.add(redoMenuItem);
+        editMenuExecuter.undo();
+        editMenuExecuter.redo();
     }
 
     public void addEditListener() {
