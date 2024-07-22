@@ -12,14 +12,15 @@ public class FileMenuHandler {
     private JMenu fileMenu;
     private FileMenuOpener fileMenuOpener;
     private FileMenuSaver fileMenuSaver;
+    private File workingFile;
 
     FileMenuHandler(TextEditorGUI textEditorGUI, JTextArea textArea, JFileChooser fileChooser) {
         this.textEditorGUI = textEditorGUI;
         this.textArea = textArea;
         this.fileChooser = fileChooser;
         fileMenu = new JMenu("File");
-        fileMenuOpener = new FileMenuOpener(textEditorGUI, fileChooser, textArea, fileMenu);
-        fileMenuSaver = new FileMenuSaver(textEditorGUI, fileChooser, textArea, fileMenu);
+        fileMenuOpener = new FileMenuOpener(textEditorGUI, fileChooser, textArea, fileMenu, workingFile);
+        fileMenuSaver = new FileMenuSaver(textEditorGUI, fileChooser, textArea, fileMenu, workingFile);
         addFileMenuItems();
     }
 

@@ -10,16 +10,24 @@ public class FileMenuSaver {
     private JFileChooser fileChooser;
     private JTextArea textArea;
     private JMenu fileMenu;
+    private File workingFile;
 
-    FileMenuSaver(TextEditorGUI textEditorGUI, JFileChooser fileChooser, JTextArea textArea, JMenu fileMenu) {
+    FileMenuSaver(TextEditorGUI textEditorGUI, JFileChooser fileChooser, JTextArea textArea, JMenu fileMenu, File workingFile;) {
         this.textEditorGUI = textEditorGUI;
         this.fileChooser = fileChooser;
         this.textArea = textArea;
         this.fileMenu = fileMenu;
+        this.workingFile = workingFile;
     }
 
     public void saveFile() {
         JMenuItem saveMenuItem = new JMenuItem("Save");
+        saveMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
         fileMenu.add(saveMenuItem);
     }
 
@@ -31,8 +39,9 @@ public class FileMenuSaver {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                fileChooser.showSaveDialog(textEditorGUI);
-
+                int result = fileChooser.showSaveDialog(textEditorGUI);
+                // execute code only if user pressed save button
+                if (result != JFileChooser.APPROVE_OPTION) return;
                 try {
                     // if no txt extension, we need to append it into file
                     File selectedFile = fileChooser.getSelectedFile();
@@ -42,6 +51,7 @@ public class FileMenuSaver {
                     if (!isTxtExtension) {
                         selectedFile = new File(selectedFile.getAbsoluteFile() + ".txt");
                     }
+
 
                     // create new file
                     selectedFile.createNewFile();
@@ -56,6 +66,9 @@ public class FileMenuSaver {
 
                     // update title header of gui to the saved text file
                     textEditorGUI.setTitle(fileName);
+
+                    // update working file
+                    workingFile = selectedFile;
 
                     // show message dialog
                     JOptionPane.showMessageDialog(textEditorGUI, "Successfully saved file as "+fileName);

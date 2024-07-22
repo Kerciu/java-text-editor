@@ -10,12 +10,14 @@ public class FileMenuOpener {
     private JFileChooser fileChooser;
     private JTextArea textArea;
     private JMenu fileMenu;
+    private File workingFile;
 
-    FileMenuOpener(TextEditorGUI textEditorGUI, JFileChooser fileChooser, JTextArea textArea, JMenu fileMenu) {
+    FileMenuOpener(TextEditorGUI textEditorGUI, JFileChooser fileChooser, JTextArea textArea, JMenu fileMenu, File workingFile) {
         this.textEditorGUI = textEditorGUI;
         this.fileChooser = fileChooser;
         this.textArea = textArea;
         this.fileMenu = fileMenu;
+        this.workingFile = workingFile;
     }
 
     public void newFile() {
@@ -30,6 +32,8 @@ public class FileMenuOpener {
                 textEditorGUI.setTitle("Text Editor");
                 // set text area
                 textArea.setText("");
+                // reset working file
+                workingFile = null;
             }
         });
 
@@ -43,9 +47,16 @@ public class FileMenuOpener {
         openMenuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                fileChooser.showOpenDialog(textEditorGUI);
+                int result = fileChooser.showOpenDialog(textEditorGUI);
+
+                // execute code only if user pressed save button
+                if (result != JFileChooser.APPROVE_OPTION) return;
                 try {
                     File selectedFile = fileChooser.getSelectedFile();
+
+                    // update working file
+                    workingFile = selectedFile;
+
                     textEditorGUI.setTitle(selectedFile.getName());
 
                     // read the file
