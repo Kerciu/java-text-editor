@@ -35,7 +35,7 @@ public class MenuBarHandler {
     }
 
     private void addFormatMenu(JMenuBar menuBar) {
-        formatMenu = new FormatMenu(textArea);
+        formatMenu = new FormatMenu(textEditorGUI, textArea);
         menuBar.add(formatMenu.getFormatMenu());
     }
 }

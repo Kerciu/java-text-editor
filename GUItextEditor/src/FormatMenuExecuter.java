@@ -1,10 +1,12 @@
 import javax.swing.*;
 
 public class FormatMenuExecuter {
+    private TextEditorGUI textEditorGUI;
     private JMenu formatMenu;
     private JTextArea textArea;
 
-    FormatMenuExecuter(JMenu formatMenu, JTextArea textArea) {
+    FormatMenuExecuter(TextEditorGUI textEditorGUI, JMenu formatMenu, JTextArea textArea) {
+        this.textEditorGUI = textEditorGUI;
         this.formatMenu = formatMenu;
         this.textArea = textArea;
     }
@@ -18,7 +20,6 @@ public class FormatMenuExecuter {
     }
 
     public void addFontMenu() {
-        JMenu fontMenu = new JMenu("Font");
-        formatMenu.add(fontMenu);
+        new FontMenu(textEditorGUI, formatMenu, textArea);
     }
 }

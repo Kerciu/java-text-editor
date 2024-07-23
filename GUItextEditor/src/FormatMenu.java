@@ -5,10 +5,10 @@ public class FormatMenu {
     private FormatMenuExecuter formatMenuExecuter;
     private JTextArea textArea;
 
-    FormatMenu(JTextArea textArea) {
+    FormatMenu(TextEditorGUI textEditorGUI, JTextArea textArea) {
         this.textArea = textArea;
         formatMenu = new JMenu("Format");
-        formatMenuExecuter = new FormatMenuExecuter(formatMenu, textArea);
+        formatMenuExecuter = new FormatMenuExecuter(textEditorGUI, formatMenu, textArea);
 
         addFormatMenuItems();
     }
@@ -21,6 +21,7 @@ public class FormatMenu {
 
         formatMenuExecuter.addTextWrapCheckBox();
         formatMenuExecuter.addTextAlignMenu();
+        formatMenuExecuter.addFontMenu();
     }
 }
 
