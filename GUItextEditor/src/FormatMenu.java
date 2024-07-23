@@ -3,12 +3,9 @@ import javax.swing.*;
 public class FormatMenu {
     private JMenu formatMenu;
     private FormatMenuExecuter formatMenuExecuter;
-    private JTextArea textArea;
-
-    FormatMenu(TextEditorGUI textEditorGUI, JTextArea textArea) {
-        this.textArea = textArea;
+    FormatMenu(TextEditorGUI textEditorGUI) {
         formatMenu = new JMenu("Format");
-        formatMenuExecuter = new FormatMenuExecuter(textEditorGUI, formatMenu, textArea);
+        formatMenuExecuter = new FormatMenuExecuter(textEditorGUI, formatMenu);
 
         addFormatMenuItems();
     }

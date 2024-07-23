@@ -5,15 +5,11 @@ import java.io.*;
 
 public class FileMenuExecuter {
     private TextEditorGUI textEditorGUI;
-    private JFileChooser fileChooser;
-    private JTextArea textArea;
     private JMenu fileMenu;
     private File workingFile;
 
-    FileMenuExecuter(TextEditorGUI textEditorGUI, JFileChooser fileChooser, JTextArea textArea, JMenu fileMenu) {
+    FileMenuExecuter(TextEditorGUI textEditorGUI, JMenu fileMenu) {
         this.textEditorGUI = textEditorGUI;
-        this.fileChooser = fileChooser;
-        this.textArea = textArea;
         this.fileMenu = fileMenu;
         this.workingFile = null;
     }
@@ -28,7 +24,7 @@ public class FileMenuExecuter {
                 // set header title
                 textEditorGUI.setTitle("Text Editor");
                 // set text area
-                textArea.setText("");
+                textEditorGUI.getTextArea().setText("");
                 // reset working file
                 workingFile = null;
             }
@@ -44,12 +40,12 @@ public class FileMenuExecuter {
         openMenuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int result = fileChooser.showOpenDialog(textEditorGUI);
+                int result = textEditorGUI.getFileChooser().showOpenDialog(textEditorGUI);
 
                 // execute code only if user pressed save button
                 if (result != JFileChooser.APPROVE_OPTION) return;
                 try {
-                    File selectedFile = fileChooser.getSelectedFile();
+                    File selectedFile = textEditorGUI.getFileChooser().getSelectedFile();
 
                     // update working file
                     workingFile = selectedFile;
@@ -69,7 +65,7 @@ public class FileMenuExecuter {
                     }
 
                     // update gui text area
-                    textArea.setText(stringBuilder.toString());
+                    textEditorGUI.getTextArea().setText(stringBuilder.toString());
 
                     bufferedReader.close();
                     fileReader.close();
@@ -94,7 +90,7 @@ public class FileMenuExecuter {
                     // write to working file
                     FileWriter fileWriter = new FileWriter(workingFile);
                     BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-                    bufferedWriter.write(textArea.getText());
+                    bufferedWriter.write(textEditorGUI.getTextArea().getText());
                     bufferedWriter.close();
                     fileWriter.close();
 
@@ -114,12 +110,12 @@ public class FileMenuExecuter {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                int result = fileChooser.showSaveDialog(textEditorGUI);
+                int result = textEditorGUI.getFileChooser().showSaveDialog(textEditorGUI);
                 // execute code only if user pressed save button
                 if (result != JFileChooser.APPROVE_OPTION) return;
                 try {
                     // if no txt extension, we need to append it into file
-                    File selectedFile = fileChooser.getSelectedFile();
+                    File selectedFile = textEditorGUI.getFileChooser().getSelectedFile();
                     String fileName = selectedFile.getName();
                     Boolean isTxtExtension = (fileName.substring(fileName.length() - 4).equalsIgnoreCase(".txt"));
 
@@ -134,7 +130,7 @@ public class FileMenuExecuter {
                     // supply file with user-typed contents
                     FileWriter fileWriter = new FileWriter(selectedFile);
                     BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-                    bufferedWriter.write(textArea.getText());
+                    bufferedWriter.write(textEditorGUI.getTextArea().getText());
 
                     bufferedWriter.close();
                     fileWriter.close();

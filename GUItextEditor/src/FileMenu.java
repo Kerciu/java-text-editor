@@ -9,9 +9,9 @@ public class FileMenu {
     private JMenu fileMenu;
     private FileMenuExecuter fileMenuExecuter;
 
-    FileMenu(TextEditorGUI textEditorGUI, JTextArea textArea, JFileChooser fileChooser) {
+    FileMenu(TextEditorGUI textEditorGUI) {
         fileMenu = new JMenu("File");
-        fileMenuExecuter = new FileMenuExecuter(textEditorGUI, fileChooser, textArea, fileMenu);
+        fileMenuExecuter = new FileMenuExecuter(textEditorGUI, fileMenu);
         addFileMenuItems();
     }
 

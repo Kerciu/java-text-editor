@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 
 public class EditMenu {
     private TextEditorGUI textEditorGUI;
-    private JTextArea textArea;
     private JMenu editMenu;
 
     // manage undo and redo
@@ -15,9 +14,8 @@ public class EditMenu {
 
     private EditMenuExecuter editMenuExecuter;
 
-    EditMenu(TextEditorGUI textEditorGUI, JTextArea textArea) {
+    EditMenu(TextEditorGUI textEditorGUI) {
         this.textEditorGUI = textEditorGUI;
-        this.textArea = textArea;
         this.undoManager = new UndoManager();
         editMenu = new JMenu("Edit");
         editMenuExecuter = new EditMenuExecuter(this, undoManager);
@@ -36,7 +34,7 @@ public class EditMenu {
     }
 
     public void addEditListener() {
-        textArea.getDocument().addUndoableEditListener(new UndoableEditListener() {
+        textEditorGUI.getTextArea().getDocument().addUndoableEditListener(new UndoableEditListener() {
             @Override
             public void undoableEditHappened(UndoableEditEvent e) {
                 undoManager.addEdit(e.getEdit());

@@ -1,14 +1,17 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.util.Locale;
 
 public class FontMenuDialog extends JDialog {
-    private TextEditorGUI source;
+    private TextEditorGUI textEditorGUI;
 
-    public FontMenuDialog(TextEditorGUI source) {
+    public FontMenuDialog(TextEditorGUI textEditorGUI) {
+        this.textEditorGUI = textEditorGUI;
         setTitle("Font Settings");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(425, 350);
-        setLocationRelativeTo(source);
+        setLocationRelativeTo(textEditorGUI);
         setModal(true);
 
         setLayout(null);
@@ -27,14 +30,41 @@ public class FontMenuDialog extends JDialog {
 
         // display current font and fonts available
         JPanel fontPanel = new JPanel();
-        fontPanel.setBounds(10, 15, 125, 168);
+        fontPanel.setBounds(10, 15, 125, 250);
 
         // display current font
-        JTextField currentFontField = new JTextField(source.getTextArea().getFont().getFontName());
+        displayCurrentFont(fontPanel);
+
+        // display available fonts
+        displayAvailableFonts(fontPanel);
+
+        add(fontPanel);
+    }
+
+    private void displayCurrentFont(JPanel fontPanel) {
+        JTextField currentFontField = new JTextField(textEditorGUI.getTextArea().getFont().getFontName());
         currentFontField.setPreferredSize(new Dimension(125, 125));
         currentFontField.setEditable(false);
         fontPanel.add(currentFontField);
+    }
 
-        add(fontPanel);
+    private void displayAvailableFonts(JPanel fontPanel) {
+        JPanel listOfFontsPanel = new JPanel();
+        listOfFontsPanel.setLayout(new BoxLayout(listOfFontsPanel, BoxLayout.Y_AXIS));
+
+        // make font panel scrollable
+        JScrollPane scrollPane = new JScrollPane(listOfFontsPanel);
+        scrollPane.setPreferredSize(new Dimension(125, 125));
+
+        GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        String[] fontNames = graphicsEnvironment.getAvailableFontFamilyNames();
+
+        // for each font display them
+        for(String s : fontNames) {
+            JLabel fontNameLabel = new JLabel(s);
+            listOfFontsPanel.add(fontNameLabel);
+        }
+
+        fontPanel.add(scrollPane);
     }
 }

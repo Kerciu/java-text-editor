@@ -3,13 +3,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class TextWrap {
+    private TextEditorGUI textEditorGUI;
     private JMenu formatMenu;
-    private JTextArea textArea;
     JCheckBoxMenuItem textWrapCheckBox;
 
-    TextWrap(JMenu formatMenu, JTextArea textArea) {
+    TextWrap(TextEditorGUI textEditorGUI, JMenu formatMenu) {
+        this.textEditorGUI = textEditorGUI;
         this.formatMenu = formatMenu;
-        this.textArea = textArea;
 
         wrapText();
     }
@@ -26,13 +26,13 @@ public class TextWrap {
                 boolean isChecked = textWrapCheckBox.getState();
 
                 if (isChecked) {
-                    textArea.setLineWrap(true);
-                    textArea.setWrapStyleWord(true);
+                    textEditorGUI.getTextArea().setLineWrap(true);
+                    textEditorGUI.getTextArea().setWrapStyleWord(true);
                 }
                 else {
                     // unwrap words
-                    textArea.setLineWrap(false);
-                    textArea.setWrapStyleWord(false);
+                    textEditorGUI.getTextArea().setLineWrap(false);
+                    textEditorGUI.getTextArea().setWrapStyleWord(false);
                 }
             }
         });

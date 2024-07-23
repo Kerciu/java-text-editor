@@ -3,23 +3,21 @@ import javax.swing.*;
 public class FormatMenuExecuter {
     private TextEditorGUI textEditorGUI;
     private JMenu formatMenu;
-    private JTextArea textArea;
 
-    FormatMenuExecuter(TextEditorGUI textEditorGUI, JMenu formatMenu, JTextArea textArea) {
+    FormatMenuExecuter(TextEditorGUI textEditorGUI, JMenu formatMenu) {
         this.textEditorGUI = textEditorGUI;
         this.formatMenu = formatMenu;
-        this.textArea = textArea;
     }
 
     public void addTextWrapCheckBox() {
-        new TextWrap(formatMenu, textArea);
+        new TextWrap(textEditorGUI, formatMenu);
     }
 
     public void addTextAlignMenu() {
-        new TextAlignMenu(formatMenu, textArea);
+        new TextAlignMenu(textEditorGUI, formatMenu);
     }
 
     public void addFontMenu() {
-        new FontMenu(textEditorGUI, formatMenu, textArea);
+        new FontMenu(textEditorGUI, formatMenu);
     }
 }

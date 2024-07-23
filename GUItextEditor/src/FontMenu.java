@@ -3,15 +3,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class FontMenu {
-    private JMenu formatMenu;
-    private JTextArea textArea;
-    private JMenu fontMenu;
     private TextEditorGUI textEditorGUI;
+    private JMenu formatMenu;
+    private JMenu fontMenu;
 
-    FontMenu(TextEditorGUI textEditorGUI, JMenu formatMenu, JTextArea textArea) {
+    FontMenu(TextEditorGUI textEditorGUI, JMenu formatMenu) {
         this.textEditorGUI = textEditorGUI;
         this.formatMenu = formatMenu;
-        this.textArea = textArea;
         fontMenu = new JMenu("Font");
 
         addFontMenuItems();

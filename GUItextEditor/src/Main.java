@@ -7,7 +7,7 @@ public class Main {
             @Override
             public void run() {
                 try {
-                    // UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
+                    UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
                     new TextEditorGUI().setVisible(true);
                 }
                 catch (Exception e) {
