@@ -31,6 +31,10 @@ public class TextEditorGUI extends JFrame {
         addGuiComponents();
     }
 
+    public JTextArea getTextArea() {
+        return textArea;
+    }
+
     private void addGuiComponents() {
         addTextArea();
         addToolBar();
