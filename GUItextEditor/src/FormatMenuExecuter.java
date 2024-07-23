@@ -10,12 +10,11 @@ public class FormatMenuExecuter {
     }
 
     public void addTextWrapCheckBox() {
-        TextWrap textWrap = new TextWrap(formatMenu, textArea);
+        new TextWrap(formatMenu, textArea);
     }
 
     public void addTextAlignMenu() {
-        JMenu textAlignMenu = new JMenu("Text Align");
-        formatMenu.add(textAlignMenu);
+        new TextAlignMenu(formatMenu, textArea);
     }
 
     public void addFontMenu() {

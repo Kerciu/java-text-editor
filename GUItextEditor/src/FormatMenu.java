@@ -18,7 +18,9 @@ public class FormatMenu {
     }
 
     private void addFormatMenuItems() {
+
         formatMenuExecuter.addTextWrapCheckBox();
+        formatMenuExecuter.addTextAlignMenu();
     }
 }
 
