@@ -1,14 +1,14 @@
 import javax.swing.*;
 
 public class FormatMenu {
-    private TextEditorGUI textEditorGUI;
     private JMenu formatMenu;
     private FormatMenuExecuter formatMenuExecuter;
+    private JTextArea textArea;
 
-    FormatMenu(TextEditorGUI textEditorGUI) {
-        this.textEditorGUI = textEditorGUI;
+    FormatMenu(JTextArea textArea) {
+        this.textArea = textArea;
         formatMenu = new JMenu("Format");
-        formatMenuExecuter = new FormatMenuExecuter(formatMenu);
+        formatMenuExecuter = new FormatMenuExecuter(formatMenu, textArea);
 
         addFormatMenuItems();
     }

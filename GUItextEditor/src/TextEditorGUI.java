@@ -52,6 +52,7 @@ public class TextEditorGUI extends JFrame {
 
     private void addTextArea() {
         textArea = new JTextArea();
-        add(textArea, BorderLayout.CENTER);
+        JScrollPane scrollPane = new JScrollPane(textArea);
+        add(scrollPane, BorderLayout.CENTER);
     }
 }

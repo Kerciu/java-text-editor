@@ -2,14 +2,15 @@ import javax.swing.*;
 
 public class FormatMenuExecuter {
     private JMenu formatMenu;
+    private JTextArea textArea;
 
-    FormatMenuExecuter(JMenu formatMenu) {
+    FormatMenuExecuter(JMenu formatMenu, JTextArea textArea) {
         this.formatMenu = formatMenu;
+        this.textArea = textArea;
     }
 
     public void addTextWrapCheckBox() {
-        JCheckBoxMenuItem textWrapCheckBox = new JCheckBoxMenuItem("Text Wrap");
-        formatMenu.add(textWrapCheckBox);
+        TextWrap textWrap = new TextWrap(formatMenu, textArea);
     }
 
     public void addTextAlignMenu() {

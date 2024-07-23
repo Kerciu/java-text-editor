@@ -5,14 +5,21 @@ import java.awt.event.ActionListener;
 public class TextWrap {
     private JMenu formatMenu;
     private JTextArea textArea;
+    JCheckBoxMenuItem textWrapCheckBox;
 
     TextWrap(JMenu formatMenu, JTextArea textArea) {
         this.formatMenu = formatMenu;
         this.textArea = textArea;
+
+        wrapText();
     }
 
-    public void wrapText() {
-        JCheckBoxMenuItem textWrapCheckBox = new JCheckBoxMenuItem("Text Wrap");
+    public JCheckBoxMenuItem getWrapper() {
+        return textWrapCheckBox;
+    }
+
+    private void wrapText() {
+        textWrapCheckBox = new JCheckBoxMenuItem("Text Wrap");
         textWrapCheckBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -29,5 +36,7 @@ public class TextWrap {
                 }
             }
         });
+
+        formatMenu.add(textWrapCheckBox);
     }
 }
