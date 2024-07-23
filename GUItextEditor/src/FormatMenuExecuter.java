@@ -11,4 +11,14 @@ public class FormatMenuExecuter {
         JCheckBoxMenuItem textWrapCheckBox = new JCheckBoxMenuItem("Text Wrap");
         formatMenu.add(textWrapCheckBox);
     }
+
+    public void addTextAlignMenu() {
+        JMenu textAlignMenu = new JMenu("Text Align");
+        formatMenu.add(textAlignMenu);
+    }
+
+    public void addFontMenu() {
+        JMenu fontMenu = new JMenu("Font");
+        formatMenu.add(fontMenu);
+    }
 }
