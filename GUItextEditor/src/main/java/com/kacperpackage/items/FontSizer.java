@@ -54,6 +54,7 @@ public class FontSizer {
         );
 
         currentFontSizeField.setPreferredSize(new Dimension(125, 25));
+        currentFontSizeField.setEditable(false);
         return currentFontSizeField;
     }
 
