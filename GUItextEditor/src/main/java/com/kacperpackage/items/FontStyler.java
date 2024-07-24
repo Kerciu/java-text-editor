@@ -22,7 +22,7 @@ public class FontStyler {
 
         // display the current font style and all available ones
         JPanel fontStylePanel = new JPanel();
-        fontStylePanel.setBounds(145, 15, 25, 168);
+        fontStylePanel.setBounds(145, 15, 125, 168);
 
         // get current font style
         int currentFontStyle = textEditorGUI.getTextArea().getFont().getStyle();
@@ -53,7 +53,9 @@ public class FontStyler {
         displayFontStyles(listOfFontStylesPanel, "Italic", Font.ITALIC, 12);
         displayFontStyles(listOfFontStylesPanel, "Bold Italic", Font.BOLD | Font.ITALIC, 12);
 
-        fontStylePanel.add(listOfFontStylesPanel);
+        JScrollPane scrollPane = new JScrollPane(listOfFontStylesPanel);
+        scrollPane.setPreferredSize(new Dimension(125, 125));
+        fontStylePanel.add(scrollPane);
 
         fontMenuDialog.add(fontStylePanel);
     }
