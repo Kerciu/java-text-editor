@@ -4,10 +4,14 @@ import main.java.com.kacperpackage.GUI.TextEditorGUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 public class FontStyler {
     private TextEditorGUI textEditorGUI;
     private FontMenuDialog fontMenuDialog;
+    private JTextField currentFontStyleField;
 
     public FontStyler(TextEditorGUI textEditorGUI, FontMenuDialog fontMenuDialog) {
         this.textEditorGUI = textEditorGUI;
@@ -35,7 +39,7 @@ public class FontStyler {
             default -> currentFontStyleText = "Bold Italic";
         }
 
-        JTextField currentFontStyleField = new JTextField(currentFontStyleText);
+        currentFontStyleField = new JTextField(currentFontStyleText);
         currentFontStyleField.setPreferredSize(new Dimension(125, 25));
         currentFontStyleField.setEditable(false);
         fontStylePanel.add(currentFontStyleField);
@@ -62,6 +66,28 @@ public class FontStyler {
 
     private void displayFontStyles(JPanel listOfFontStylesPanel, String styleText, int which, int size) {
         JLabel style = new JLabel(styleText);
+        style.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                // update current style field
+                currentFontStyleField.setText(style.getText());
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                // add highlight when hovering
+                style.setOpaque(true);
+                style.setBackground(Color.PINK);
+                style.setForeground(Color.WHITE);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                // disable highlight when not hovering
+                style.setBackground(null);
+                style.setForeground(null);
+            }
+        });
         style.setFont(new Font("Dialog", which, size));
         listOfFontStylesPanel.add(style);
     }
