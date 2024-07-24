@@ -18,55 +18,72 @@ public class FontChooser {
     }
 
     public void displayFontChooseFields(JPanel fontPanel) {
-        displayCurrentFont(fontPanel);
-        displayAvailableFonts(fontPanel);
+        createCurrentFontField(fontPanel);
+        createAvailableFontsFontPanel(fontPanel);
     }
 
-    private void displayCurrentFont(JPanel fontPanel) {
+    private void createCurrentFontField(JPanel fontPanel) {
         currentFontField = new JTextField(textEditorGUI.getTextArea().getFont().getFontName());
         currentFontField.setPreferredSize(new Dimension(125, 25));
         currentFontField.setEditable(false);
         fontPanel.add(currentFontField);
     }
 
-    private void displayAvailableFonts(JPanel fontPanel) {
+    private void createAvailableFontsFontPanel(JPanel fontPanel) {
         JPanel listOfFontsPanel = new JPanel();
         listOfFontsPanel.setLayout(new BoxLayout(listOfFontsPanel, BoxLayout.Y_AXIS));
 
         // make font panel scrollable
+        JScrollPane scrollPane = createScrollPane(listOfFontsPanel);
+        String[] fontNames = getEnvironmentalFontNames();
+
+        // for each font display them
+        displayAvailableFonts(listOfFontsPanel, fontNames);
+
+        fontPanel.add(scrollPane);
+    }
+
+    private JScrollPane createScrollPane(JPanel listOfFontsPanel) {
         JScrollPane scrollPane = new JScrollPane(listOfFontsPanel);
         scrollPane.setPreferredSize(new Dimension(125, 125));
 
-        GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        String[] fontNames = graphicsEnvironment.getAvailableFontFamilyNames();
+        return scrollPane;
+    }
 
-        // for each font display them
+    private String[] getEnvironmentalFontNames() {
+        GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        return graphicsEnvironment.getAvailableFontFamilyNames();
+    }
+
+    private MouseAdapter createMouseListener(JLabel fontNameLabel, String textToSet) {
+        return new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                // when clicked, set currentFontField to font name
+                currentFontField.setText(textToSet);
+            }
+
+            public void mouseEntered(MouseEvent e) {
+                // highlight over font name when mouse hover over them
+                fontNameLabel.setOpaque(true);
+                fontNameLabel.setBackground(Color.PINK);
+                fontNameLabel.setForeground(Color.WHITE);
+            }
+
+            public void mouseExited(MouseEvent e) {
+                // stop the highlight
+                fontNameLabel.setBackground(null);
+                fontNameLabel.setForeground(null);
+            }
+        };
+    }
+
+    public void displayAvailableFonts(JPanel listOfFontsPanel, String[] fontNames) {
         for(String s : fontNames) {
             JLabel fontNameLabel = new JLabel(s);
             listOfFontsPanel.add(fontNameLabel);
 
-            fontNameLabel.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    // when clicked, set currentFontField to font name
-                    currentFontField.setText(s);
-                }
-
-                public void mouseEntered(MouseEvent e) {
-                    // highlight over font name when mouse hover over them
-                    fontNameLabel.setOpaque(true);
-                    fontNameLabel.setBackground(Color.PINK);
-                    fontNameLabel.setForeground(Color.WHITE);
-                }
-
-                public void mouseExited(MouseEvent e) {
-                    // stop the highlight
-                    fontNameLabel.setBackground(null);
-                    fontNameLabel.setForeground(null);
-                }
-            });
+            fontNameLabel.addMouseListener(createMouseListener(fontNameLabel, s));
         }
-
-        fontPanel.add(scrollPane);
     }
 }

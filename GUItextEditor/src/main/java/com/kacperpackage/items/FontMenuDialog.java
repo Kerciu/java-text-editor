@@ -23,17 +23,26 @@ public class FontMenuDialog extends JDialog {
     }
 
     private void addFontMenuDialogComponents() {
-        JLabel fontLabel = new JLabel("Font");
-        fontLabel.setBounds(10, 5, 125, 10);
-        add(fontLabel);
+        createFontLabel();
 
         // display current font and fonts available
-        JPanel fontPanel = new JPanel();
-        fontPanel.setBounds(10, 15, 125, 250);
+        JPanel fontPanel = createFontPanel();
 
         // display current and available fonts
         addMenuComponents(fontPanel);
         add(fontPanel);
+    }
+
+    private void createFontLabel() {
+        JLabel fontLabel = new JLabel("Font");
+        fontLabel.setBounds(10, 5, 125, 10);
+        add(fontLabel);
+    }
+
+    private JPanel createFontPanel() {
+        JPanel fontPanel = new JPanel();
+        fontPanel.setBounds(10, 15, 125, 250);
+        return fontPanel;
     }
 
     private void addMenuComponents(JPanel fontPanel) {
