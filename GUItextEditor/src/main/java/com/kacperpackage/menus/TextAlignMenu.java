@@ -23,9 +23,13 @@ public class TextAlignMenu {
     }
 
     private void addTextAlignMenuItems() {
-        new TextAlignMenuItem("Left", this, textEditorGUI.getTextArea());
-        new TextAlignMenuItem("Right", this, textEditorGUI.getTextArea());
-
+        try {
+            new TextAlignMenuItem("Left", this, textEditorGUI.getTextArea());
+            new TextAlignMenuItem("Right", this, textEditorGUI.getTextArea());
+        }
+        catch (RuntimeException e) {
+            e.printStackTrace();
+        }
         formatMenu.add(textAlignMenu);
     }
 }
