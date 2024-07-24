@@ -48,12 +48,19 @@ public class FontStyler {
         listOfFontStylesPanel.setBackground(Color.WHITE);
 
         // list of font styles
-        JLabel plainStyle = new JLabel("Plain");
-        plainStyle.setFont(new Font("Dialog", Font.PLAIN, 12));
-        listOfFontStylesPanel.add(plainStyle);
+        displayFontStyles(listOfFontStylesPanel, "Plain", Font.PLAIN, 12);
+        displayFontStyles(listOfFontStylesPanel, "Bold", Font.BOLD, 12);
+        displayFontStyles(listOfFontStylesPanel, "Italic", Font.ITALIC, 12);
+        displayFontStyles(listOfFontStylesPanel, "Bold Italic", Font.BOLD | Font.ITALIC, 12);
 
         fontStylePanel.add(listOfFontStylesPanel);
 
         fontMenuDialog.add(fontStylePanel);
+    }
+
+    private void displayFontStyles(JPanel listOfFontStylesPanel, String styleText, int which, int size) {
+        JLabel style = new JLabel(styleText);
+        style.setFont(new Font("Dialog", which, size));
+        listOfFontStylesPanel.add(style);
     }
 }
