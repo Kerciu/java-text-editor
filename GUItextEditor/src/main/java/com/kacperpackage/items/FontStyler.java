@@ -6,7 +6,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 public class FontStyler {
     private TextEditorGUI textEditorGUI;
@@ -16,79 +15,100 @@ public class FontStyler {
     public FontStyler(TextEditorGUI textEditorGUI, FontMenuDialog fontMenuDialog) {
         this.textEditorGUI = textEditorGUI;
         this.fontMenuDialog = fontMenuDialog;
-        addFontStyleComponents();
+        initializeFontStyleComponents();
     }
 
-    private void addFontStyleComponents() {
-        JLabel fontStyleLabel = new JLabel("Font Style");
-        fontStyleLabel.setBounds(145, 5, 125, 10);
+    private void initializeFontStyleComponents() {
+        JLabel fontStyleLabel = createFontStyleLabel();
         fontMenuDialog.add(fontStyleLabel);
 
-        // display the current font style and all available ones
-        JPanel fontStylePanel = new JPanel();
-        fontStylePanel.setBounds(145, 15, 125, 168);
-
-        // get current font style
-        int currentFontStyle = textEditorGUI.getTextArea().getFont().getStyle();
-        String currentFontStyleText;
-
-        switch(currentFontStyle) {
-            case Font.PLAIN -> currentFontStyleText = "Plain";
-            case Font.BOLD -> currentFontStyleText = "Bold";
-            case Font.ITALIC -> currentFontStyleText = "Italic";
-            default -> currentFontStyleText = "Bold Italic";
-        }
-
-        currentFontStyleField = new JTextField(currentFontStyleText);
-        currentFontStyleField.setPreferredSize(new Dimension(125, 25));
-        currentFontStyleField.setEditable(false);
-        fontStylePanel.add(currentFontStyleField);
-
-        // display list of all font style available
-        JPanel listOfFontStylesPanel = new JPanel();
-
-        // make the layout have only one column
-        listOfFontStylesPanel.setLayout(new BoxLayout(listOfFontStylesPanel, BoxLayout.Y_AXIS));
-        listOfFontStylesPanel.setBackground(Color.WHITE);
-
-        // list of font styles
-        displayFontStyles(listOfFontStylesPanel, "Plain", Font.PLAIN, 12);
-        displayFontStyles(listOfFontStylesPanel, "Bold", Font.BOLD, 12);
-        displayFontStyles(listOfFontStylesPanel, "Italic", Font.ITALIC, 12);
-        displayFontStyles(listOfFontStylesPanel, "Bold Italic", Font.BOLD | Font.ITALIC, 12);
-
-        JScrollPane scrollPane = new JScrollPane(listOfFontStylesPanel);
-        scrollPane.setPreferredSize(new Dimension(125, 125));
-        fontStylePanel.add(scrollPane);
-
+        JPanel fontStylePanel = createFontStylePanel();
         fontMenuDialog.add(fontStylePanel);
     }
 
-    private void displayFontStyles(JPanel listOfFontStylesPanel, String styleText, int which, int size) {
-        JLabel style = new JLabel(styleText);
-        style.addMouseListener(new MouseAdapter() {
+    private JLabel createFontStyleLabel() {
+        JLabel fontStyleLabel = new JLabel("Font Style");
+        fontStyleLabel.setBounds(145, 5, 125, 10);
+        return fontStyleLabel;
+    }
+
+    private JPanel createFontStylePanel() {
+        JPanel fontStylePanel = new JPanel();
+        fontStylePanel.setBounds(145, 15, 125, 168);
+
+        String currentFontStyleText = getCurrentFontStyleText();
+        currentFontStyleField = createCurrentFontStyleField(currentFontStyleText);
+        fontStylePanel.add(currentFontStyleField);
+
+        JPanel listOfFontStylesPanel = createFontStylesListPanel();
+        JScrollPane scrollPane = createScrollPane(listOfFontStylesPanel);
+        fontStylePanel.add(scrollPane);
+
+        return fontStylePanel;
+    }
+
+    private JTextField createCurrentFontStyleField(String text) {
+        JTextField field = new JTextField(text);
+        field.setPreferredSize(new Dimension(125, 25));
+        field.setEditable(false);
+        return field;
+    }
+
+    private JPanel createFontStylesListPanel() {
+        JPanel listOfFontStylesPanel = new JPanel();
+        listOfFontStylesPanel.setLayout(new BoxLayout(listOfFontStylesPanel, BoxLayout.Y_AXIS));
+        listOfFontStylesPanel.setBackground(Color.WHITE);
+
+        addFontStyleToPanel(listOfFontStylesPanel, "Plain", Font.PLAIN);
+        addFontStyleToPanel(listOfFontStylesPanel, "Bold", Font.BOLD);
+        addFontStyleToPanel(listOfFontStylesPanel, "Italic", Font.ITALIC);
+        addFontStyleToPanel(listOfFontStylesPanel, "Bold Italic", Font.BOLD | Font.ITALIC);
+
+        return listOfFontStylesPanel;
+    }
+
+    private JScrollPane createScrollPane(JPanel panel) {
+        JScrollPane scrollPane = new JScrollPane(panel);
+        scrollPane.setPreferredSize(new Dimension(125, 125));
+        return scrollPane;
+    }
+
+    private void addFontStyleToPanel(JPanel panel, String styleText, int fontStyle) {
+        JLabel styleLabel = new JLabel(styleText);
+        styleLabel.setFont(new Font("Dialog", fontStyle, 12));
+        styleLabel.addMouseListener(createFontStyleMouseListener(styleLabel));
+        panel.add(styleLabel);
+    }
+
+    private MouseAdapter createFontStyleMouseListener(JLabel styleLabel) {
+        return new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                // update current style field
-                currentFontStyleField.setText(style.getText());
+                currentFontStyleField.setText(styleLabel.getText());
             }
 
             @Override
             public void mouseEntered(MouseEvent e) {
-                // add highlight when hovering
-                style.setOpaque(true);
-                style.setBackground(Color.PINK);
-                style.setForeground(Color.WHITE);
+                styleLabel.setOpaque(true);
+                styleLabel.setBackground(Color.PINK);
+                styleLabel.setForeground(Color.WHITE);
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                // disable highlight when not hovering
-                style.setBackground(null);
-                style.setForeground(null);
+                styleLabel.setBackground(null);
+                styleLabel.setForeground(null);
             }
-        });
-        style.setFont(new Font("Dialog", which, size));
-        listOfFontStylesPanel.add(style);
+        };
+    }
+
+    private String getCurrentFontStyleText() {
+        int currentFontStyle = textEditorGUI.getTextArea().getFont().getStyle();
+        return switch (currentFontStyle) {
+            case Font.PLAIN -> "Plain";
+            case Font.BOLD -> "Bold";
+            case Font.ITALIC -> "Italic";
+            default -> "Bold Italic";
+        };
     }
 }
