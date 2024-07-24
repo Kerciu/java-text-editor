@@ -34,7 +34,7 @@ public class FontStyler {
 
     private JPanel createFontStylePanel() {
         JPanel fontStylePanel = new JPanel();
-        fontStylePanel.setBounds(145, 15, 125, 168);
+        fontStylePanel.setBounds(145, 15, 125, 160);
 
         String currentFontStyleText = getCurrentFontStyleText();
         currentFontStyleField = createCurrentFontStyleField(currentFontStyleText);
