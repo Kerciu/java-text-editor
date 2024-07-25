@@ -1,6 +1,7 @@
 package main.java.com.kacperpackage.Handlers.Executors;
 
 import main.java.com.kacperpackage.GUI.TextEditorGUI;
+import main.java.com.kacperpackage.Items.EditItems.*;
 import main.java.com.kacperpackage.Menus.Edit.EditMenu;
 
 import javax.swing.*;
@@ -28,6 +29,9 @@ public class EditMenuExecutor implements Executor{
     public void addMenuItems() {
         editMenu.getEditMenu().add(createUndoMenuItem());
         editMenu.getEditMenu().add(createRedoMenuItem());
+        addFindMenuItem();
+        addReplaceMenuItem();
+
     }
 
     public JMenuItem createUndoMenuItem() {
@@ -44,6 +48,14 @@ public class EditMenuExecutor implements Executor{
                 createRedoActionListener()
         );
         return redoMenuItem;
+    }
+
+    public void addFindMenuItem() {
+        new TextFinder(textEditorGUI, editMenu.getEditMenu());
+    }
+
+    public void addReplaceMenuItem() {
+        new TextReplacer(textEditorGUI, editMenu.getEditMenu());
     }
 
     public ActionListener createUndoActionListener() {
