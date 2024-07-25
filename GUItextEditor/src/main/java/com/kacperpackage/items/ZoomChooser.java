@@ -1,14 +1,27 @@
 package main.java.com.kacperpackage.items;
 
+import main.java.com.kacperpackage.GUI.TextEditorGUI;
+
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ZoomChooser {
+    private TextEditorGUI textEditorGUI;
     private JMenu zoomMenu;
 
-    public ZoomChooser(JMenu zoomMenu) {
+    private enum zoomDirection{
+        ZOOM_IN, ZOOM_OUT, ZOOM_RESTORE
+    };
+
+    private static final int zoomDefaultSize = 12;
+
+    public ZoomChooser(TextEditorGUI textEditorGUI, JMenu zoomMenu) {
+        this.textEditorGUI = textEditorGUI;
         this.zoomMenu = zoomMenu;
+
+        addZoomChooserItems();
     }
 
     private void addZoomChooserItems() {
@@ -18,15 +31,21 @@ public class ZoomChooser {
     }
 
     private JMenuItem createZoomInItem() {
-        return new JMenuItem("Zoom In");
+        JMenuItem zoomInMenuItem = new JMenuItem("Zoom In");
+        addZoomItemFunctionality(zoomInMenuItem);
+        return zoomInMenuItem;
     }
 
     private JMenuItem createZoomOutItem() {
-        return new JMenuItem("Zoom Out");
+        JMenuItem zoomOutMenuItem = new JMenuItem("Zoom Out");
+        addZoomItemFunctionality(zoomOutMenuItem);
+        return zoomOutMenuItem;
     }
 
     private JMenuItem createZoomRestoreItem() {
-        return new JMenuItem("Zoom Restore Default");
+        JMenuItem zoomRestoreMenuItem = new JMenuItem("Zoom Restore Default");
+        addZoomItemFunctionality(zoomRestoreMenuItem);
+        return zoomRestoreMenuItem;
     }
 
     private void addZoomItemFunctionality(JMenuItem zoomMenuItem) {
@@ -37,36 +56,53 @@ public class ZoomChooser {
 
     private ActionListener createAppropriateActionListener(JMenuItem zoomMenuItem) {
         return switch (zoomMenuItem.getText()) {
-            case "Zoom In" -> createZoomInActionListener(zoomMenuItem);
-            case "Zoom Out" -> createZoomOutActionListener(zoomMenuItem);
-            default -> createZoomRestoreActionListener(zoomMenuItem);
+            case "Zoom In" -> createZoomInActionListener();
+            case "Zoom Out" -> createZoomOutActionListener();
+            default -> createZoomRestoreActionListener();
         };
     }
 
-    private ActionListener createZoomInActionListener(JMenuItem zoomInMenuItem) {
+    private ActionListener createZoomInActionListener() {
         return new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                setNewFontInOrderToZoom(zoomDirection.ZOOM_IN);
             }
         };
     }
 
-    private ActionListener createZoomOutActionListener(JMenuItem zoomOutMenuItem) {
+    private ActionListener createZoomOutActionListener() {
         return new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                setNewFontInOrderToZoom(zoomDirection.ZOOM_OUT);
             }
         };
     }
 
-    private ActionListener createZoomRestoreActionListener(JMenuItem zoomRestoreMenuItem) {
+    private ActionListener createZoomRestoreActionListener() {
         return new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                setNewFontInOrderToZoom(zoomDirection.ZOOM_RESTORE);
             }
         };
+    }
+
+    private Font getCurrentFont() {
+        return textEditorGUI.getTextArea().getFont();
+    }
+
+    private void setNewFontInOrderToZoom(zoomDirection direction) {
+        Font currentFont = getCurrentFont();
+        JTextArea textArea = textEditorGUI.getTextArea();
+
+        int newSize = switch (direction) {
+            case ZOOM_IN -> currentFont.getSize() + 1;
+            case ZOOM_OUT -> Math.max(currentFont.getSize() - 1, 1);
+            case ZOOM_RESTORE -> zoomDefaultSize;
+        };
+
+        textArea.setFont(new Font(currentFont.getName(), currentFont.getStyle(), newSize));
     }
 }

@@ -14,7 +14,7 @@ public class ZoomMenu {
     public ZoomMenu(TextEditorGUI textEditorGUI, JMenu viewMenu) {
         this.textEditorGUI = textEditorGUI;
         this.zoomMenu = new JMenu("Zoom");
-        this.zoomChooser = new ZoomChooser(zoomMenu);
+        this.zoomChooser = new ZoomChooser(textEditorGUI, zoomMenu);
         this.viewMenu = viewMenu;
 
         initializeZoomMenu();
