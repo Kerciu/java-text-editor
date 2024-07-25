@@ -29,6 +29,7 @@ public class FontColorer {
         JPanel currentColorBox = new JPanel();
         currentColorBox.setBounds(175, 200, 23, 23);
         currentColorBox.setBackground(textEditorGUI.getTextArea().getForeground());
+        currentColorBox.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         return currentColorBox;
     }
 
