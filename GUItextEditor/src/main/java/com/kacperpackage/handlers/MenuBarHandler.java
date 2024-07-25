@@ -7,14 +7,13 @@ import javax.swing.*;
 
 public class MenuBarHandler {
     private TextEditorGUI textEditorGUI;
-    private JMenuBar menuBar;
     private FileMenu fileMenu;
     private EditMenu editMenu;
     private FormatMenu formatMenu;
+    private ViewMenu viewMenu;
 
     public MenuBarHandler(TextEditorGUI textEditorGUI, JMenuBar menuBar) {
         this.textEditorGUI = textEditorGUI;
-        this.menuBar = menuBar;
 
         addMenuItems(menuBar);
     }
@@ -23,6 +22,7 @@ public class MenuBarHandler {
         addFileMenu(menuBar);
         addEditMenu(menuBar);
         addFormatMenu(menuBar);
+        addViewMenu(menuBar);
     }
 
     private void addFileMenu(JMenuBar menuBar) {
@@ -38,5 +38,10 @@ public class MenuBarHandler {
     private void addFormatMenu(JMenuBar menuBar) {
         formatMenu = new FormatMenu(textEditorGUI);
         menuBar.add(formatMenu.getFormatMenu());
+    }
+
+    private void addViewMenu(JMenuBar menuBar) {
+        viewMenu = new ViewMenu(textEditorGUI);
+        menuBar.add(viewMenu.getViewMenu());
     }
 }
