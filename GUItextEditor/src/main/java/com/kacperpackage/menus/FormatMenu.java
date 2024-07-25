@@ -1,17 +1,17 @@
 package main.java.com.kacperpackage.menus;
 
 import main.java.com.kacperpackage.GUI.TextEditorGUI;
-import main.java.com.kacperpackage.handlers.FormatMenuExecuter;
+import main.java.com.kacperpackage.handlers.FormatMenuExecutor;
 
 import javax.swing.*;
 
 public class FormatMenu {
     private JMenu formatMenu;
-    private FormatMenuExecuter formatMenuExecuter;
+    private FormatMenuExecutor formatMenuExecutor;
 
     public FormatMenu(TextEditorGUI textEditorGUI) {
         formatMenu = new JMenu("Format");
-        formatMenuExecuter = new FormatMenuExecuter(textEditorGUI, formatMenu);
+        formatMenuExecutor = new FormatMenuExecutor(textEditorGUI, formatMenu);
 
         addFormatMenuItems();
     }
@@ -21,9 +21,7 @@ public class FormatMenu {
     }
 
     private void addFormatMenuItems() {
-        formatMenuExecuter.addTextWrapCheckBox();
-        formatMenuExecuter.addTextAlignMenu();
-        formatMenuExecuter.addFontMenu();
+        formatMenuExecutor.addMenuItems();
     }
 }
 

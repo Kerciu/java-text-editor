@@ -5,7 +5,7 @@ import main.java.com.kacperpackage.menus.ZoomMenu;
 
 import javax.swing.*;
 
-public class ViewMenuExecutor {
+public class ViewMenuExecutor implements Executor{
     private TextEditorGUI textEditorGUI;
     private JMenu viewMenu;
 
@@ -14,7 +14,8 @@ public class ViewMenuExecutor {
         this.viewMenu = viewMenu;
     }
 
-    public void addViewMenuItems() {
+    @Override
+    public void addMenuItems() {
         addZoomMenu();
     }
 

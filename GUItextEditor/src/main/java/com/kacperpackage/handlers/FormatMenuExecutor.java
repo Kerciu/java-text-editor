@@ -6,13 +6,20 @@ import main.java.com.kacperpackage.menus.*;
 
 import javax.swing.*;
 
-public class FormatMenuExecuter {
+public class FormatMenuExecutor implements Executor{
     private TextEditorGUI textEditorGUI;
     private JMenu formatMenu;
 
-    public FormatMenuExecuter(TextEditorGUI textEditorGUI, JMenu formatMenu) {
+    public FormatMenuExecutor(TextEditorGUI textEditorGUI, JMenu formatMenu) {
         this.textEditorGUI = textEditorGUI;
         this.formatMenu = formatMenu;
+    }
+
+    @Override
+    public void addMenuItems() {
+        addTextWrapCheckBox();
+        addTextAlignMenu();
+        addFontMenu();
     }
 
     public void addTextWrapCheckBox() {

@@ -1,17 +1,17 @@
 package main.java.com.kacperpackage.menus;
 
 import main.java.com.kacperpackage.GUI.TextEditorGUI;
-import main.java.com.kacperpackage.handlers.FileMenuExecuter;
+import main.java.com.kacperpackage.handlers.FileMenuExecutor;
 
 import javax.swing.*;
 
 public class FileMenu {
     private JMenu fileMenu;
-    private FileMenuExecuter fileMenuExecuter;
+    private FileMenuExecutor fileMenuExecutor;
 
     public FileMenu(TextEditorGUI textEditorGUI) {
         fileMenu = new JMenu("File");
-        fileMenuExecuter = new FileMenuExecuter(textEditorGUI, fileMenu);
+        fileMenuExecutor = new FileMenuExecutor(textEditorGUI, fileMenu);
         addFileMenuItems();
     }
 
@@ -21,14 +21,14 @@ public class FileMenu {
 
     private void addFileMenuItems() {
         // "new file" functionality
-        fileMenuExecuter.newFile();
+        fileMenuExecutor.newFile();
         // "open file" functionality
-        fileMenuExecuter.openFile();
+        fileMenuExecutor.openFile();
         // "save" functionality
-        fileMenuExecuter.saveFile();
+        fileMenuExecutor.saveFile();
         // "save as" functionality
-        fileMenuExecuter.saveAsFile();
+        fileMenuExecutor.saveAsFile();
         // "exit" functionality
-        fileMenuExecuter.exitFile();
+        fileMenuExecutor.exitFile();
     }
 }

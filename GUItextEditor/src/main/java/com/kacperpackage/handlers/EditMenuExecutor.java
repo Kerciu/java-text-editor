@@ -7,13 +7,18 @@ import javax.swing.undo.UndoManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class EditMenuExecuter {
+public class EditMenuExecutor implements Executor{
     private EditMenu editMenu;
     private UndoManager undoManager;
 
-    public EditMenuExecuter(EditMenu editMenu, UndoManager undoManager) {
+    public EditMenuExecutor(EditMenu editMenu, UndoManager undoManager) {
         this.editMenu = editMenu;
         this.undoManager = undoManager;
+    }
+
+    @Override
+    public void addMenuItems() {
+
     }
 
     public void undo() {

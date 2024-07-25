@@ -1,7 +1,7 @@
 package main.java.com.kacperpackage.menus;
 
 import main.java.com.kacperpackage.GUI.TextEditorGUI;
-import main.java.com.kacperpackage.handlers.EditMenuExecuter;
+import main.java.com.kacperpackage.handlers.EditMenuExecutor;
 
 import javax.swing.*;
 import javax.swing.event.UndoableEditEvent;
@@ -15,13 +15,13 @@ public class EditMenu {
     // manage undo and redo
     private UndoManager undoManager;
 
-    private EditMenuExecuter editMenuExecuter;
+    private EditMenuExecutor editMenuExecutor;
 
     public EditMenu(TextEditorGUI textEditorGUI) {
         this.textEditorGUI = textEditorGUI;
         this.undoManager = new UndoManager();
         editMenu = new JMenu("Edit");
-        editMenuExecuter = new EditMenuExecuter(this, undoManager);
+        editMenuExecutor = new EditMenuExecutor(this, undoManager);
 
         addEditListener();
         addUndoRedoOptions();
@@ -32,8 +32,8 @@ public class EditMenu {
     }
 
     private void addUndoRedoOptions() {
-        editMenuExecuter.undo();
-        editMenuExecuter.redo();
+        editMenuExecutor.undo();
+        editMenuExecutor.redo();
     }
 
     public void addEditListener() {

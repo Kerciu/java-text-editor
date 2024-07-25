@@ -27,7 +27,4 @@ public class ZoomMenu {
     private void initializeZoomMenu() {
         viewMenu.add(zoomMenu);
     }
-
-
-
 }

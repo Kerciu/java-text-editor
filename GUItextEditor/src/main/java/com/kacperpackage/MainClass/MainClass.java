@@ -1,9 +1,9 @@
-package main.java.com.kacperpackage;
+package main.java.com.kacperpackage.MainClass;
 
 import javax.swing.*;
 import main.java.com.kacperpackage.GUI.TextEditorGUI;
 
-public class Main {
+public class MainClass {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             /* used to make GUI more thread safe */

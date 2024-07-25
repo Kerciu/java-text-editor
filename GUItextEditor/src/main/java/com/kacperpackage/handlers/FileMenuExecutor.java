@@ -7,15 +7,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 
-public class FileMenuExecuter {
+public class FileMenuExecutor implements Executor{
     private TextEditorGUI textEditorGUI;
     private JMenu fileMenu;
     private File workingFile;
 
-    public FileMenuExecuter(TextEditorGUI textEditorGUI, JMenu fileMenu) {
+    public FileMenuExecutor(TextEditorGUI textEditorGUI, JMenu fileMenu) {
         this.textEditorGUI = textEditorGUI;
         this.fileMenu = fileMenu;
         this.workingFile = null;
+    }
+
+    @Override
+    public void addMenuItems() {
+
     }
 
     public void newFile() {

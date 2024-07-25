@@ -23,6 +23,6 @@ public class ViewMenu {
     }
 
     private void addViewMenuItems() {
-        viewMenuExecutor.addViewMenuItems();
+        viewMenuExecutor.addMenuItems();
     }
 }
