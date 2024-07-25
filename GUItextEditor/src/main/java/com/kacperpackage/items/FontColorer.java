@@ -15,6 +15,6 @@ public class FontColorer {
     }
 
     private void initializeFontSizeComponents() {
-        
+
     }
 }

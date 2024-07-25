@@ -49,6 +49,7 @@ public class FontMenuDialog extends JDialog {
         addFontChooser(fontPanel);
         addFontStyler();
         addFontSizer();
+        addFontColorer();
     }
 
     private void addFontChooser(JPanel fontPanel) {
@@ -61,5 +62,9 @@ public class FontMenuDialog extends JDialog {
 
     private void addFontSizer() {
         new FontSizer(textEditorGUI, this);
+    }
+
+    private void addFontColorer() {
+        new FontColorer(textEditorGUI, this);
     }
 }
