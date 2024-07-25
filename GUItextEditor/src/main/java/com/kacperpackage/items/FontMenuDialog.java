@@ -125,6 +125,8 @@ public class FontMenuDialog extends JDialog {
                 Font newFont = new Font(fontType, fontStyle, fontSize);
                 textEditorGUI.getTextArea().setFont(newFont);
                 textEditorGUI.getTextArea().setForeground(fontColor);
+
+                FontMenuDialog.this.dispose();
             }
         };
     }
@@ -133,7 +135,7 @@ public class FontMenuDialog extends JDialog {
         return new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                FontMenuDialog.this.dispose();
             }
         };
     }
