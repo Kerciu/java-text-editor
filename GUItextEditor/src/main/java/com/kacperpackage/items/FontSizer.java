@@ -20,6 +20,8 @@ public class FontSizer {
         fontMenuDialog.add(fontSizeLabel);
 
         JPanel fontSizePanel = createFontSizePanel();
+        JPanel listOfFontSizesPanel = createListOfFontSizes();
+        fontSizePanel.add(createScrollPane(listOfFontSizesPanel));
         fontMenuDialog.add(fontSizePanel);
     }
 
@@ -56,6 +58,28 @@ public class FontSizer {
         currentFontSizeField.setPreferredSize(new Dimension(125, 25));
         currentFontSizeField.setEditable(false);
         return currentFontSizeField;
+    }
+
+    private JPanel createListOfFontSizes() {
+        JPanel listOfFontSizesPanel = new JPanel();
+        listOfFontSizesPanel.setLayout(new BoxLayout(listOfFontSizesPanel, BoxLayout.Y_AXIS));
+        listOfFontSizesPanel.setBackground(Color.WHITE);
+        displayListOfAvailableFonts(listOfFontSizesPanel);
+        return listOfFontSizesPanel;
+    }
+
+    private void displayListOfAvailableFonts(JPanel listOfFontSizesPanel) {
+        // from 8 to 72 with 2-sized laps
+        for (int i = 8; i < 73; i += 2) {
+            JLabel fontSizeValueLabel = new JLabel(Integer.toString(i));
+            listOfFontSizesPanel.add(fontSizeValueLabel);
+        }
+    }
+
+    private JScrollPane createScrollPane(JPanel listOfFontSizesPanel) {
+        JScrollPane scrollPane = new JScrollPane(listOfFontSizesPanel);
+        scrollPane.setPreferredSize(new Dimension(125, 125));
+        return scrollPane;
     }
 
     private void initializeFontSizePanelComponents(JPanel fontSizePanel) {
