@@ -18,6 +18,10 @@ public class FontSizer {
         initializeFontSizeComponents();
     }
 
+    public JTextField getCurrentFontSizeField() {
+        return currentFontSizeField;
+    }
+
     private void initializeFontSizeComponents() {
         JLabel fontSizeLabel = createFontSizeLabel();
         fontMenuDialog.add(fontSizeLabel);

@@ -18,6 +18,10 @@ public class FontStyler {
         initializeFontStyleComponents();
     }
 
+    public JTextField getCurrentFontStyleField() {
+        return currentFontStyleField;
+    }
+
     private void initializeFontStyleComponents() {
         JLabel fontStyleLabel = createFontStyleLabel();
         fontMenuDialog.add(fontStyleLabel);

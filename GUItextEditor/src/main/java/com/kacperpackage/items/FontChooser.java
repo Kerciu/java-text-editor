@@ -17,6 +17,10 @@ public class FontChooser {
         displayFontChooseFields(fontPanel);
     }
 
+    public JTextField getCurrentFontField() {
+        return currentFontField;
+    }
+
     public void displayFontChooseFields(JPanel fontPanel) {
         createCurrentFontField(fontPanel);
         createAvailableFontsFontPanel(fontPanel);

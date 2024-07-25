@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 public class FontColorer {
     private TextEditorGUI textEditorGUI;
     private FontMenuDialog fontMenuDialog;
+    private JPanel currentColorBox;
 
     public FontColorer(TextEditorGUI textEditorGUI, FontMenuDialog fontMenuDialog) {
         this.textEditorGUI = textEditorGUI;
@@ -17,32 +18,36 @@ public class FontColorer {
         initializeFontSizeComponents();
     }
 
+    public JPanel getCurrentColorBox() {
+        return currentColorBox;
+    }
+
     private void initializeFontSizeComponents() {
-        JPanel currentColorBox = createCurrentColorBox();
+        currentColorBox = createCurrentColorBox();
         fontMenuDialog.add(currentColorBox);
 
-        JButton chooseColorButton = createChooseColorButton(currentColorBox);
+        JButton chooseColorButton = createChooseColorButton();
         fontMenuDialog.add(chooseColorButton);
     }
 
     private JPanel createCurrentColorBox() {
-        JPanel currentColorBox = new JPanel();
-        currentColorBox.setBounds(175, 200, 23, 23);
-        currentColorBox.setBackground(textEditorGUI.getTextArea().getForeground());
-        currentColorBox.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        return currentColorBox;
+        JPanel newCurrentColorBox = new JPanel();
+        newCurrentColorBox.setBounds(175, 200, 23, 23);
+        newCurrentColorBox.setBackground(textEditorGUI.getTextArea().getForeground());
+        newCurrentColorBox.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        return newCurrentColorBox;
     }
 
-    private JButton createChooseColorButton(JPanel currentColorBox) {
+    private JButton createChooseColorButton() {
         JButton chooseColorButton = new JButton("Choose Color");
         chooseColorButton.setBounds(10, 200, 150, 25);
         chooseColorButton.addActionListener(
-                createActionListener(currentColorBox)
+                createActionListener()
         );
         return chooseColorButton;
     }
 
-    private ActionListener createActionListener(JPanel currentColorBox) {
+    private ActionListener createActionListener() {
         return new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
