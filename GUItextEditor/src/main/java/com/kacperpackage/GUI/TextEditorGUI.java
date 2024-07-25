@@ -1,6 +1,7 @@
 package main.java.com.kacperpackage.GUI;
 
 import main.java.com.kacperpackage.handlers.MenuBarHandler;
+import main.java.com.kacperpackage.items.CurrentFontParametersContainer;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;

@@ -29,6 +29,10 @@ public class FontMenuDialog extends JDialog {
         addFontMenuDialogComponents();
     }
 
+    public CurrentFontParametersContainer getCurrentFontParametersContainer() {
+        return currentFontParametersContainer;
+    }
+
     private void addFontMenuDialogComponents() {
         createFontLabel();
 
