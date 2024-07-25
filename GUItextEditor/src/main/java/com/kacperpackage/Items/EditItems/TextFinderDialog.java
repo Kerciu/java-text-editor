@@ -68,6 +68,10 @@ public class TextFinderDialog extends JDialog {
     }
 
     private void parsePatternToSearchFor() {
-
+        String patternToSearch = patternTextField.getText();
+        if (patternToSearch.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter a pattern to find", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
     }
 }
