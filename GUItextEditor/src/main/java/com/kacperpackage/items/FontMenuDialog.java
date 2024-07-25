@@ -4,6 +4,8 @@ import main.java.com.kacperpackage.GUI.TextEditorGUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -84,5 +86,35 @@ public class FontMenuDialog extends JDialog {
         JButton cancelButton = new JButton("Cancel");
         cancelButton.setBounds(315, 265, 75, 25);
         return cancelButton;
+    }
+
+    private void addActionToApplyButton(JButton applyButton) {
+        applyButton.addActionListener(
+                createApplyButtonActionListener(applyButton)
+        );
+    }
+
+    private ActionListener createApplyButtonActionListener(JButton applyButton) {
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        };
+    }
+
+    private void addActionToCancelButton(JButton cancelButton) {
+        cancelButton.addActionListener(
+                createCancelButtonActionListener(cancelButton)
+        );
+    }
+
+    private ActionListener createCancelButtonActionListener(JButton cancelButton) {
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        };
     }
 }
