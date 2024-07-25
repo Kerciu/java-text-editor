@@ -50,6 +50,7 @@ public class FontMenuDialog extends JDialog {
         addFontStyler();
         addFontSizer();
         addFontColorer();
+        addActionButtons();
     }
 
     private void addFontChooser(JPanel fontPanel) {
@@ -66,5 +67,22 @@ public class FontMenuDialog extends JDialog {
 
     private void addFontColorer() {
         new FontColorer(textEditorGUI, this);
+    }
+
+    private void addActionButtons() {
+        add(createApplyButton());
+        add(createCancelButton());
+    }
+
+    private JButton createApplyButton() {
+        JButton applyButton = new JButton("Apply");
+        applyButton.setBounds(230, 265, 75, 25);
+        return applyButton;
+    }
+
+    private JButton createCancelButton() {
+        JButton cancelButton = new JButton("Cancel");
+        cancelButton.setBounds(315, 265, 75, 25);
+        return cancelButton;
     }
 }
