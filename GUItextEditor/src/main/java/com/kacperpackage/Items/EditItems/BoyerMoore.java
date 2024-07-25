@@ -1,6 +1,8 @@
 package main.java.com.kacperpackage.Items.EditItems;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class BoyerMoore {
     private static final int numOfCharsInPattern = 256;
@@ -50,5 +52,33 @@ public class BoyerMoore {
 
         }
         return  -1;
+    }
+
+    public static int[] searchAllOccurences(String text, String pattern) {
+        char[] textCharArray = text.toCharArray();
+        char[] patternCharArray = pattern.toCharArray();
+
+        int textLength = text.length();
+        int patternLength = pattern.length();
+
+        int[] badCharTable = new int[numOfCharsInPattern];
+        badCharHeuristic(patternCharArray, badCharTable);
+
+        List<Integer> occurrences = new ArrayList<>();
+        int shift = 0; // shift of the pattern with respect to text
+
+        while (shift <= (textLength - patternLength)) {
+            int foundAtShift = boyerMooreSearch(new String(textCharArray, shift, textLength - shift), pattern);
+            if (foundAtShift == -1) {
+                break;
+            }
+
+            occurrences.add(shift + foundAtShift);
+            // move to the next position after the found occurrence
+            shift += foundAtShift + patternLength;
+        }
+
+        // convert list to array and return
+        return occurrences.stream().mapToInt(i -> i).toArray();
     }
 }
