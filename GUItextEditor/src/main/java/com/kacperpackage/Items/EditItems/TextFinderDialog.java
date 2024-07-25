@@ -6,12 +6,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.security.PrivilegedAction;
 
 public class TextFinderDialog extends JDialog {
     private TextEditorGUI textEditorGUI;
     private JTextField patternTextField;
     private JButton patternFindButton;
+    private static final Color HIGHLIGHT_COLOR = Color.PINK;
 
     public TextFinderDialog(TextEditorGUI textEditorGUI) {
         setTitle("FindPattern");
@@ -73,5 +73,11 @@ public class TextFinderDialog extends JDialog {
             JOptionPane.showMessageDialog(this, "Please enter a pattern to find", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        int[] allOccurencesOfPattern = BoyerMoore.searchAllOccurences(textEditorGUI.getTextArea().getText(), patternToSearch);
+        highlightAllOccurences(patternToSearch, allOccurencesOfPattern);
+    }
+
+    private void highlightAllOccurences(String pattern, int[] occurrences) {
+
     }
 }
