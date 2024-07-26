@@ -5,20 +5,21 @@ import main.java.com.kacperpackage.GUI.TextEditorGUI;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class TextFinder {
+public class TextReplacer {
     private TextEditorGUI textEditorGUI;
     private JTextField patternTextField;
+    private static final Color HIGHLIGHT_COLOR = Color.PINK;
 
-    public TextFinder(TextEditorGUI textEditorGUI, TextFinderDialog textFinderDialog, JTextField patternTextField) {
+    public TextReplacer(TextEditorGUI textEditorGUI, TextReplacerDialog textReplacerDialog, JTextField textField) {
         this.textEditorGUI = textEditorGUI;
-        this.patternTextField = patternTextField;
+        this.patternTextField = textField;
 
-        addWindowListener(textFinderDialog);
-        addDocumentListener();
-        TextParser.parsePatternToSearchFor(textEditorGUI, patternTextField);
+        // addWindowListener(textReplacerDialog);
+        // addDocumentListener();
     }
 
     private void addWindowListener(TextFinderDialog textFinderDialog) {
@@ -31,7 +32,7 @@ public class TextFinder {
         return new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
-                TextParser.removeHighlights(textEditorGUI);
+                // removeHighlights();
             }
         };
     }
@@ -46,19 +47,23 @@ public class TextFinder {
         return new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-                TextParser.parsePatternToSearchFor(textEditorGUI, patternTextField);
+                parsePatternToSearchFor();
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                TextParser.parsePatternToSearchFor(textEditorGUI, patternTextField);
+                parsePatternToSearchFor();
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-                TextParser.parsePatternToSearchFor(textEditorGUI, patternTextField);
+                parsePatternToSearchFor();
             }
         };
+    }
+
+    private void parsePatternToSearchFor() {
+
     }
 
 

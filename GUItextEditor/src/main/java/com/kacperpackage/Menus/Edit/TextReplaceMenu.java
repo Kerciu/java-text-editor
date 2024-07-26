@@ -1,8 +1,11 @@
 package main.java.com.kacperpackage.Menus.Edit;
 
 import main.java.com.kacperpackage.GUI.TextEditorGUI;
+import main.java.com.kacperpackage.Items.EditItems.TextFinderDialog;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class TextReplaceMenu {
     private TextEditorGUI textEditorGUI;
@@ -20,6 +23,22 @@ public class TextReplaceMenu {
     }
 
     private JMenuItem createReplaceMenuItem() {
-        return new JMenuItem("Replace");
+        JMenuItem replaceMenuItem = new JMenuItem("Replace");
+        replaceMenuItem.addActionListener(
+                createActionListener()
+        );
+        return replaceMenuItem;
+    }
+
+    private ActionListener createActionListener() {
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // launch font menu
+                TextFinderDialog textFinderDialog = TextFinderDialog.getInstance(textEditorGUI);
+                textFinderDialog.setVisible(true);
+                textFinderDialog.toFront();
+            }
+        };
     }
 }
