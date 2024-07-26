@@ -7,6 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class TextFinderDialog extends JDialog {
     private static TextFinderDialog instance;
@@ -37,8 +39,16 @@ public class TextFinderDialog extends JDialog {
         inputPanel.add(patternTextField);
 
         add(inputPanel, BorderLayout.CENTER);
-        add(patternFindButton, BorderLayout.SOUTH);
         pack();
+
+        new TextFinder(textEditorGUI, this, patternTextField);
+
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                instance = null;
+            }
+        });
     }
 
     public static TextFinderDialog getInstance(TextEditorGUI textEditorGUI) {
