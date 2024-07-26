@@ -22,21 +22,24 @@ public class TextFindMenu {
         editMenu.add(createFindMenuItem());
     }
 
-    private void createTextFinderDialog() {
-        new TextFinderDialog(textEditorGUI).setVisible(true);
-    }
-
     private JMenuItem createFindMenuItem() {
         JMenuItem findMenuItem = new JMenuItem("Find");
-        findMenuItem.addActionListener(new ActionListener() {
+        findMenuItem.addActionListener(
+            createActionListener()
+        );
+        return findMenuItem;
+    }
+
+    private ActionListener createActionListener() {
+        return new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // launch font menu
-                createTextFinderDialog();
-
+                TextFinderDialog textFinderDialog = TextFinderDialog.getInstance(textEditorGUI);
+                textFinderDialog.setVisible(true);
+                textFinderDialog.toFront();
             }
-        });
-        return findMenuItem;
+        };
     }
 
 }

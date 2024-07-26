@@ -9,10 +9,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class TextFinderDialog extends JDialog {
+    private static TextFinderDialog instance;
     private TextEditorGUI textEditorGUI;
     private JTextField patternTextField;
     private JButton patternFindButton;
-    private static final Color HIGHLIGHT_COLOR = Color.PINK;
 
     public TextFinderDialog(TextEditorGUI textEditorGUI) {
         this.textEditorGUI = textEditorGUI;
@@ -41,6 +41,13 @@ public class TextFinderDialog extends JDialog {
         pack();
     }
 
+    public static TextFinderDialog getInstance(TextEditorGUI textEditorGUI) {
+        if (instance == null) {
+            instance = new TextFinderDialog(textEditorGUI);
+        }
+        return instance;
+    }
+
     private JLabel createFindPatternLabel() {
         return new JLabel("Enter Pattern to Find");
     }
@@ -64,5 +71,11 @@ public class TextFinderDialog extends JDialog {
                 new TextFinder(textEditorGUI, TextFinderDialog.this, patternTextField);
             }
         };
+    }
+
+    @Override
+    public void dispose() {
+        super.dispose();
+        instance = null;
     }
 }

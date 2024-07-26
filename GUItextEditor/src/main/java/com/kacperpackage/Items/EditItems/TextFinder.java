@@ -3,6 +3,8 @@ package main.java.com.kacperpackage.Items.EditItems;
 import main.java.com.kacperpackage.GUI.TextEditorGUI;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.Highlighter;
@@ -13,13 +15,15 @@ import java.awt.event.WindowEvent;
 public class TextFinder {
     private TextEditorGUI textEditorGUI;
     private JTextField patternTextField;
+    private static final Color HIGHLIGHT_COLOR = Color.PINK;
 
     public TextFinder(TextEditorGUI textEditorGUI, TextFinderDialog textFinderDialog, JTextField textField) {
         this.textEditorGUI = textEditorGUI;
         this.patternTextField = textField;
 
         addWindowListener(textFinderDialog);
-        parsePatternToSearchFor(textFinderDialog);
+        addDocumentListener();
+        parsePatternToSearchFor();
     }
 
     private void addWindowListener(TextFinderDialog textFinderDialog) {
@@ -37,10 +41,35 @@ public class TextFinder {
         };
     }
 
-    private void parsePatternToSearchFor(TextFinderDialog textFinderDialog) {
+    private void addDocumentListener() {
+        patternTextField.getDocument().addDocumentListener(
+                createDocumentListener()
+        );
+    }
+
+    private DocumentListener createDocumentListener() {
+        return new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                parsePatternToSearchFor();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                parsePatternToSearchFor();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                parsePatternToSearchFor();
+            }
+        };
+    }
+
+    private void parsePatternToSearchFor() {
         String patternToSearch = patternTextField.getText();
         if (patternToSearch.isEmpty()) {
-            JOptionPane.showMessageDialog(textFinderDialog, "Please enter a pattern to find", "Error", JOptionPane.ERROR_MESSAGE);
+            removeHighlights();
             return;
         }
         int[] allOccurencesOfPattern = BoyerMoore.searchAllOccurences(textEditorGUI.getTextArea().getText(), patternToSearch);
@@ -49,7 +78,7 @@ public class TextFinder {
 
     private void highlightAllOccurences(String pattern, int[] occurrences) {
         Highlighter highlighter = textEditorGUI.getTextArea().getHighlighter();
-        Highlighter.HighlightPainter painter = new DefaultHighlighter.DefaultHighlightPainter(Color.PINK);
+        Highlighter.HighlightPainter painter = new DefaultHighlighter.DefaultHighlightPainter(HIGHLIGHT_COLOR);
 
         highlighter.removeAllHighlights();
 
