@@ -1,6 +1,7 @@
 package main.java.com.kacperpackage.Items.EditItems;
 
 import main.java.com.kacperpackage.GUI.TextEditorGUI;
+import org.w3c.dom.Text;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,11 +15,11 @@ public class TextFinderDialog extends JDialog {
     private static final Color HIGHLIGHT_COLOR = Color.PINK;
 
     public TextFinderDialog(TextEditorGUI textEditorGUI) {
+        this.textEditorGUI = textEditorGUI;
         setTitle("FindPattern");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(425, 350);
         setLocationRelativeTo(textEditorGUI);
-        setModal(true);
 
         setLayout(null);
         initializeComponents();
@@ -38,8 +39,6 @@ public class TextFinderDialog extends JDialog {
         add(inputPanel, BorderLayout.CENTER);
         add(patternFindButton, BorderLayout.SOUTH);
         pack();
-
-        setLocationRelativeTo(textEditorGUI);
     }
 
     private JLabel createFindPatternLabel() {
@@ -62,22 +61,8 @@ public class TextFinderDialog extends JDialog {
         return new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                parsePatternToSearchFor();
+                new TextFinder(textEditorGUI, TextFinderDialog.this, patternTextField);
             }
         };
-    }
-
-    private void parsePatternToSearchFor() {
-        String patternToSearch = patternTextField.getText();
-        if (patternToSearch.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please enter a pattern to find", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        int[] allOccurencesOfPattern = BoyerMoore.searchAllOccurences(textEditorGUI.getTextArea().getText(), patternToSearch);
-        highlightAllOccurences(patternToSearch, allOccurencesOfPattern);
-    }
-
-    private void highlightAllOccurences(String pattern, int[] occurrences) {
-
     }
 }

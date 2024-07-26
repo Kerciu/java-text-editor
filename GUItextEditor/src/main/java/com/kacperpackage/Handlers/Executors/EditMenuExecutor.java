@@ -1,8 +1,9 @@
 package main.java.com.kacperpackage.Handlers.Executors;
 
 import main.java.com.kacperpackage.GUI.TextEditorGUI;
-import main.java.com.kacperpackage.Items.EditItems.*;
 import main.java.com.kacperpackage.Menus.Edit.EditMenu;
+import main.java.com.kacperpackage.Menus.Edit.TextFindMenu;
+import main.java.com.kacperpackage.Menus.Edit.TextReplaceMenu;
 
 import javax.swing.*;
 import javax.swing.event.UndoableEditEvent;
@@ -51,11 +52,11 @@ public class EditMenuExecutor implements Executor{
     }
 
     public void addFindMenuItem() {
-        new TextFinder(textEditorGUI, editMenu.getEditMenu());
+        new TextFindMenu(textEditorGUI, editMenu.getEditMenu());
     }
 
     public void addReplaceMenuItem() {
-        new TextReplacer(textEditorGUI, editMenu.getEditMenu());
+        new TextReplaceMenu(textEditorGUI, editMenu.getEditMenu());
     }
 
     public ActionListener createUndoActionListener() {
