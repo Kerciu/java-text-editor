@@ -11,6 +11,7 @@ public class TextReplacerDialog extends JDialog {
     private static TextReplacerDialog instance;
     private TextEditorGUI textEditorGUI;
     private JTextField patternTextField;
+    private JTextField goalTextField;
     private JButton patternReplaceButton;
 
     public TextReplacerDialog(TextEditorGUI textEditorGUI) {
@@ -29,14 +30,22 @@ public class TextReplacerDialog extends JDialog {
 
         JLabel replacePatternLabel = createReplacePatternLabel();
         patternTextField = createSearchPatternField();
+        JLabel replaceWithPatternLabel = createReplaceWithPatternLabel();
+        goalTextField= createReplacePatternField();
         patternReplaceButton = createPatternReplaceButton();
 
         JPanel inputPanel = new JPanel();
+        inputPanel.setLayout(new BoxLayout(inputPanel, BoxLayout.Y_AXIS));
+        
         inputPanel.add(replacePatternLabel);
         inputPanel.add(patternTextField);
+        inputPanel.add(replaceWithPatternLabel);
+        inputPanel.add(goalTextField);
+
+        inputPanel.add(Box.createVerticalStrut(10));
+        inputPanel.add(patternReplaceButton);
 
         add(inputPanel, BorderLayout.CENTER);
-        add(patternReplaceButton, BorderLayout.SOUTH);
         pack();
     }
 
@@ -51,7 +60,15 @@ public class TextReplacerDialog extends JDialog {
         return new JLabel("Enter Pattern to Replace");
     }
 
+    private JLabel createReplaceWithPatternLabel() {
+        return new JLabel("Enter Pattern to Replace with");
+    }
+
     private JTextField createSearchPatternField() {
+        return new JTextField(20);
+    }
+
+    private JTextField createReplacePatternField() {
         return new JTextField(20);
     }
 
@@ -67,7 +84,7 @@ public class TextReplacerDialog extends JDialog {
         return new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new TextReplacer(textEditorGUI, TextReplacerDialog.this, patternTextField);
+                new TextReplacer(textEditorGUI, TextReplacerDialog.this, patternTextField, goalTextField);
             }
         };
     }

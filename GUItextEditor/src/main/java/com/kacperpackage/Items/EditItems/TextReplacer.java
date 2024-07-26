@@ -12,11 +12,13 @@ import java.awt.event.WindowEvent;
 public class TextReplacer {
     private TextEditorGUI textEditorGUI;
     private JTextField patternTextField;
+    private JTextField goalTextField;
     private static final Color HIGHLIGHT_COLOR = Color.PINK;
 
-    public TextReplacer(TextEditorGUI textEditorGUI, TextReplacerDialog textReplacerDialog, JTextField textField) {
+    public TextReplacer(TextEditorGUI textEditorGUI, TextReplacerDialog textReplacerDialog, JTextField textField, JTextField goalTextField) {
         this.textEditorGUI = textEditorGUI;
         this.patternTextField = textField;
+        this.goalTextField = goalTextField;
 
         // addWindowListener(textReplacerDialog);
         // addDocumentListener();

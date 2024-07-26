@@ -1,7 +1,7 @@
 package main.java.com.kacperpackage.Menus.Edit;
 
 import main.java.com.kacperpackage.GUI.TextEditorGUI;
-import main.java.com.kacperpackage.Items.EditItems.TextFinderDialog;
+import main.java.com.kacperpackage.Items.EditItems.TextReplacerDialog;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -35,9 +35,9 @@ public class TextReplaceMenu {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // launch font menu
-                TextFinderDialog textFinderDialog = TextFinderDialog.getInstance(textEditorGUI);
-                textFinderDialog.setVisible(true);
-                textFinderDialog.toFront();
+                TextReplacerDialog textReplacerDialog = TextReplacerDialog.getInstance(textEditorGUI);
+                textReplacerDialog.setVisible(true);
+                textReplacerDialog.toFront();
             }
         };
     }
