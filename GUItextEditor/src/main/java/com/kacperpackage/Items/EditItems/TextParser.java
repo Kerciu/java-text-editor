@@ -17,8 +17,10 @@ public class TextParser {
             removeHighlights(textEditorGUI);
             return;
         }
+
         int[] allOccurencesOfPattern = BoyerMoore.searchAllOccurences(textEditorGUI.getTextArea().getText(), patternToSearch);
         highlightAllOccurences(textEditorGUI, patternToSearch, allOccurencesOfPattern);
+
     }
 
     private static void highlightAllOccurences(TextEditorGUI textEditorGUI, String pattern, int[] occurrences) {

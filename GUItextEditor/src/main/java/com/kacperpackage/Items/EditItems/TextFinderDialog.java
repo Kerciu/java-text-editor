@@ -37,6 +37,7 @@ public class TextFinderDialog extends JDialog {
         JPanel inputPanel = new JPanel();
         inputPanel.add(findPatternLabel);
         inputPanel.add(patternTextField);
+        inputPanel.add(patternFindButton);
 
         add(inputPanel, BorderLayout.CENTER);
         pack();
@@ -78,7 +79,7 @@ public class TextFinderDialog extends JDialog {
         return new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new TextFinder(textEditorGUI, TextFinderDialog.this, patternTextField);
+                TextParser.parsePatternToSearchFor(textEditorGUI, patternTextField);
             }
         };
     }

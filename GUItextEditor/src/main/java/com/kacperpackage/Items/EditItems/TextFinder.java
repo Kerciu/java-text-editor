@@ -17,8 +17,7 @@ public class TextFinder {
         this.patternTextField = patternTextField;
 
         addWindowListener(textFinderDialog);
-        addDocumentListener();
-        TextParser.parsePatternToSearchFor(textEditorGUI, patternTextField);
+        addTextAreaDocumentListener();
     }
 
     private void addWindowListener(TextFinderDialog textFinderDialog) {
@@ -36,30 +35,24 @@ public class TextFinder {
         };
     }
 
-    private void addDocumentListener() {
-        patternTextField.getDocument().addDocumentListener(
-                createDocumentListener()
+    private void addTextAreaDocumentListener() {
+        textEditorGUI.getTextArea().getDocument().addDocumentListener(
+                new DocumentListener() {
+                    @Override
+                    public void insertUpdate(DocumentEvent e) {
+                        TextParser.removeHighlights(textEditorGUI);
+                    }
+
+                    @Override
+                    public void removeUpdate(DocumentEvent e) {
+                        TextParser.removeHighlights(textEditorGUI);
+                    }
+
+                    @Override
+                    public void changedUpdate(DocumentEvent e) {
+                        TextParser.removeHighlights(textEditorGUI);
+                    }
+                }
         );
     }
-
-    private DocumentListener createDocumentListener() {
-        return new DocumentListener() {
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                TextParser.parsePatternToSearchFor(textEditorGUI, patternTextField);
-            }
-
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                TextParser.parsePatternToSearchFor(textEditorGUI, patternTextField);
-            }
-
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                TextParser.parsePatternToSearchFor(textEditorGUI, patternTextField);
-            }
-        };
-    }
-
-
 }
