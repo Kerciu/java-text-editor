@@ -6,12 +6,12 @@ import main.java.com.kacperpackage.Handlers.Executors.FileMenuExecutor;
 import javax.swing.*;
 
 public class FileMenu {
+    private TextEditorGUI textEditorGUI;
     private JMenu fileMenu;
-    private FileMenuExecutor fileMenuExecutor;
 
     public FileMenu(TextEditorGUI textEditorGUI) {
+        this.textEditorGUI = textEditorGUI;
         fileMenu = new JMenu("File");
-        fileMenuExecutor = new FileMenuExecutor(textEditorGUI, fileMenu);
         addFileMenuItems();
     }
 
@@ -20,15 +20,6 @@ public class FileMenu {
     }
 
     private void addFileMenuItems() {
-        // "new file" functionality
-        fileMenuExecutor.newFile();
-        // "open file" functionality
-        fileMenuExecutor.openFile();
-        // "save" functionality
-        fileMenuExecutor.saveFile();
-        // "save as" functionality
-        fileMenuExecutor.saveAsFile();
-        // "exit" functionality
-        fileMenuExecutor.exitFile();
+        new FileMenuExecutor(textEditorGUI, fileMenu);
     }
 }

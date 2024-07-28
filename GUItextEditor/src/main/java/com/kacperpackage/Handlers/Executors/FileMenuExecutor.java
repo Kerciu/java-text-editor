@@ -20,6 +20,8 @@ public class FileMenuExecutor implements Executor{
         this.textEditorGUI = textEditorGUI;
         this.fileMenu = fileMenu;
         this.workingFile = null;
+
+        addMenuItems();
     }
 
     @Override
@@ -27,14 +29,6 @@ public class FileMenuExecutor implements Executor{
         new NewFileActionPerformer(textEditorGUI, fileMenu, workingFile);
         new OpenFileActionPerformer(textEditorGUI, fileMenu, workingFile);
         new SaveFileActionPerformer(textEditorGUI, fileMenu, workingFile);
-        new ExitActionPerformer();
-    }
-
-    public File getWorkingFile() {
-        return workingFile;
-    }
-
-    public void setWorkingFile(File workingFile) {
-        this.workingFile = workingFile;
+        new ExitActionPerformer(textEditorGUI, fileMenu);
     }
 }

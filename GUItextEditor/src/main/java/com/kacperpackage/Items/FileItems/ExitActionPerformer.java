@@ -1,41 +1,47 @@
 package main.java.com.kacperpackage.Items.FileItems;
 
+import main.java.com.kacperpackage.GUI.TextEditorGUI;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ExitActionPerformer extends ActionPerformer{
-    public void exitFile() {
-        JMenuItem exitMenuItem = new JMenuItem("Exit");
-
-        exitMenuItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // dispose of gui
-                textEditorGUI.dispose();
-            }
-        });
-
-        fileMenu.add(exitMenuItem);
+    public ExitActionPerformer(TextEditorGUI textEditorGUI, JMenu fileMenu) {
+        super(textEditorGUI, fileMenu);
+        addItems();
     }
 
-    private void addItems() {
-        formatMenu.add();
+    @Override
+    public void addItems() {
+        fileMenu.add(
+            createExitMenuItem()
+        );
     }
 
     private JMenuItem createExitMenuItem() {
-
+        JMenuItem exitMenuItem = new JMenuItem("Exit");
+        addExitMenuItemFunctionality(exitMenuItem);
+        return exitMenuItem;
     }
 
-    private void addExitMenuItemFunctionality() {
-
+    private void addExitMenuItemFunctionality(JMenuItem exitMenuItem) {
+        exitMenuItem.addActionListener(
+                createExitActionListener()
+        );
     }
 
-    private ActionListener addExitActionListener() {
-
+    private ActionListener createExitActionListener() {
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                performExitFunctionality();
+            }
+        };
     }
 
     private void performExitFunctionality() {
-
+        // dispose of gui
+        textEditorGUI.dispose();
     }
 }
