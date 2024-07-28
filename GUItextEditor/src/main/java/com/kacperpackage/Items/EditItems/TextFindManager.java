@@ -8,19 +8,17 @@ import javax.swing.event.DocumentListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class TextFinder {
+public class TextFindManager {
     private TextEditorGUI textEditorGUI;
-    private JTextField patternTextField;
 
-    public TextFinder(TextEditorGUI textEditorGUI, TextFinderDialog textFinderDialog, JTextField patternTextField) {
+    public TextFindManager(TextEditorGUI textEditorGUI, JDialog textFinderDialog) {
         this.textEditorGUI = textEditorGUI;
-        this.patternTextField = patternTextField;
 
         addWindowListener(textFinderDialog);
         addTextAreaDocumentListener();
     }
 
-    private void addWindowListener(TextFinderDialog textFinderDialog) {
+    private void addWindowListener(JDialog textFinderDialog) {
         textFinderDialog.addWindowListener(
                 createWindowListener()
         );

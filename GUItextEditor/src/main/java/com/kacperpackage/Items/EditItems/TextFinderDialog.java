@@ -42,7 +42,7 @@ public class TextFinderDialog extends JDialog {
         add(inputPanel, BorderLayout.CENTER);
         pack();
 
-        new TextFinder(textEditorGUI, this, patternTextField);
+        new TextFindManager(textEditorGUI, this);
 
         addWindowListener(new WindowAdapter() {
             @Override

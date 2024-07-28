@@ -47,6 +47,8 @@ public class TextReplacerDialog extends JDialog {
 
         add(inputPanel, BorderLayout.CENTER);
         pack();
+
+        new TextFindManager(textEditorGUI, this);
     }
 
     public static TextReplacerDialog getInstance(TextEditorGUI textEditorGUI) {
@@ -84,9 +86,23 @@ public class TextReplacerDialog extends JDialog {
         return new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new TextReplacer(textEditorGUI, TextReplacerDialog.this, patternTextField, goalTextField);
+                replacePattern();
             }
         };
+    }
+
+    private void replacePattern() {
+        String patternToReplace = patternTextField.getText();
+        String replacementText = goalTextField.getText();
+
+        if (patternToReplace.isEmpty() || replacementText.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Both fields must be filled out", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        String textContent = textEditorGUI.getTextArea().getText();
+        textContent = textContent.replaceAll(patternToReplace, replacementText);
+        textEditorGUI.getTextArea().setText(textContent);
     }
 
     @Override
