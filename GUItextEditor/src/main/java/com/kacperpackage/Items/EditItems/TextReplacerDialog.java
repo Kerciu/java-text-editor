@@ -27,7 +27,9 @@ public class TextReplacerDialog extends JDialog {
     }
 
     private void initializeComponents() {
-        setLayout(new BorderLayout());
+        setLayout(new GridBagLayout());
+        GridBagConstraints gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
 
         JLabel replacePatternLabel = createReplacePatternLabel();
         patternTextField = createSearchPatternField();
@@ -36,19 +38,29 @@ public class TextReplacerDialog extends JDialog {
         patternFindButton = createPatternFindButton();
         patternReplaceButton = createPatternReplaceButton();
 
-        JPanel inputPanel = new JPanel();
-        inputPanel.setLayout(new BoxLayout(inputPanel, BoxLayout.Y_AXIS));
-        
-        inputPanel.add(replacePatternLabel);
-        inputPanel.add(patternTextField);
-        inputPanel.add(replaceWithPatternLabel);
-        inputPanel.add(goalTextField);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
+        add(replacePatternLabel, gridBagConstraints);
 
-        inputPanel.add(Box.createVerticalStrut(10));
-        inputPanel.add(patternFindButton);
-        inputPanel.add(patternReplaceButton);
+        gridBagConstraints.gridy = 1;
+        add(patternTextField, gridBagConstraints);
 
-        add(inputPanel, BorderLayout.CENTER);
+        gridBagConstraints.gridy = 2;
+        add(replaceWithPatternLabel, gridBagConstraints);
+
+        gridBagConstraints.gridy = 3;
+        add(goalTextField, gridBagConstraints);
+
+        JPanel buttonLayoutPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
+        buttonLayoutPanel.add(patternFindButton);
+        buttonLayoutPanel.add(patternReplaceButton);
+
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = GridBagConstraints.CENTER;
+        add(buttonLayoutPanel, gridBagConstraints);
         pack();
 
         new TextFindManager(textEditorGUI, this);
@@ -62,7 +74,7 @@ public class TextReplacerDialog extends JDialog {
     }
 
     private JLabel createReplacePatternLabel() {
-        return new JLabel("Enter Pattern to Replace");
+        return new JLabel("Enter Pattern to Find");
     }
 
     private JLabel createReplaceWithPatternLabel() {
@@ -78,11 +90,12 @@ public class TextReplacerDialog extends JDialog {
     }
 
     private JButton createPatternReplaceButton() {
-        JButton searchButton = new JButton("Replace");
-        searchButton.addActionListener(
+        JButton replaceButton = new JButton("Replace");
+        replaceButton.addActionListener(
                 createReplaceButtonActionListener()
         );
-        return searchButton;
+        replaceButton.setPreferredSize(new Dimension(80, 25));
+        return replaceButton;
     }
 
     private JButton createPatternFindButton() {
@@ -90,6 +103,7 @@ public class TextReplacerDialog extends JDialog {
         findButton.addActionListener(
                 createFindButtonActionListener()
         );
+        findButton.setPreferredSize(new Dimension(80, 25));
         return findButton;
     }
 
