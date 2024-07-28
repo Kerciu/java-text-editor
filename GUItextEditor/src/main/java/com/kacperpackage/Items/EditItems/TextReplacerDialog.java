@@ -13,6 +13,7 @@ public class TextReplacerDialog extends JDialog {
     private JTextField patternTextField;
     private JTextField goalTextField;
     private JButton patternReplaceButton;
+    private JButton patternFindButton;
 
     public TextReplacerDialog(TextEditorGUI textEditorGUI) {
         this.textEditorGUI = textEditorGUI;
@@ -32,6 +33,7 @@ public class TextReplacerDialog extends JDialog {
         patternTextField = createSearchPatternField();
         JLabel replaceWithPatternLabel = createReplaceWithPatternLabel();
         goalTextField= createReplacePatternField();
+        patternFindButton = createPatternFindButton();
         patternReplaceButton = createPatternReplaceButton();
 
         JPanel inputPanel = new JPanel();
@@ -43,6 +45,7 @@ public class TextReplacerDialog extends JDialog {
         inputPanel.add(goalTextField);
 
         inputPanel.add(Box.createVerticalStrut(10));
+        inputPanel.add(patternFindButton);
         inputPanel.add(patternReplaceButton);
 
         add(inputPanel, BorderLayout.CENTER);
@@ -77,16 +80,33 @@ public class TextReplacerDialog extends JDialog {
     private JButton createPatternReplaceButton() {
         JButton searchButton = new JButton("Replace");
         searchButton.addActionListener(
-                createButtonActionListener()
+                createReplaceButtonActionListener()
         );
         return searchButton;
     }
 
-    private ActionListener createButtonActionListener() {
+    private JButton createPatternFindButton() {
+        JButton findButton = new JButton("Find");
+        findButton.addActionListener(
+                createFindButtonActionListener()
+        );
+        return findButton;
+    }
+
+    private ActionListener createReplaceButtonActionListener() {
         return new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 replacePattern();
+            }
+        };
+    }
+
+    private ActionListener createFindButtonActionListener() {
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TextParser.parsePatternToSearchFor(textEditorGUI, patternTextField);
             }
         };
     }

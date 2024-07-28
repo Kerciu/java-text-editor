@@ -9,7 +9,7 @@ import javax.swing.text.Highlighter;
 import java.awt.*;
 
 public class TextParser {
-    private static final Color HIGHLIGHT_COLOR = Color.PINK;
+    private static final Color HIGHLIGHT_COLOR = Color.ORANGE;
 
     public static void parsePatternToSearchFor(TextEditorGUI textEditorGUI, JTextField patternTextField) {
         String patternToSearch = patternTextField.getText();
