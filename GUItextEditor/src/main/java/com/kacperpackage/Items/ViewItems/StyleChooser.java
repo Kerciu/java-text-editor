@@ -19,6 +19,7 @@ public class StyleChooser {
 
     private void addStyleChooserItems() {
         styleMenu.add(createDarkModeMenuItem());
+        styleMenu.add(createLightModeMenuItem());
     }
 
     private JMenuItem createDarkModeMenuItem() {
@@ -34,14 +35,17 @@ public class StyleChooser {
     }
 
     private void addMenuItemFunctionality(JMenuItem menuItem) {
-        menuItem.addActionListener(createActionListener());
+        menuItem.addActionListener(createActionListener(menuItem));
     }
 
-    private ActionListener createActionListener() {
+    private ActionListener createActionListener(JMenuItem menuItem) {
         return new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                switch (menuItem.getText()) {
+                    case "Dark Mode" -> StyleModeSwitcher.switchToDarkMode(textEditorGUI);
+                    case "Light Mode" -> StyleModeSwitcher.switchToLightMode(textEditorGUI);
+                }
             }
         };
     }

@@ -10,7 +10,6 @@ public class MainClass {
             @Override
             public void run() {
                 try {
-                    UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
                     new TextEditorGUI().setVisible(true);
                 }
                 catch (Exception e) {
