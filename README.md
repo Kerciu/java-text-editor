@@ -62,6 +62,9 @@ A simple text editor built in Java that provides basic text editing functionalit
     - `java/` - Java source files
     - `resources/` - Resource files
 
+## Screenshot
+![image](https://github.com/user-attachments/assets/11f6aa23-f59e-4ab7-8360-c535e3607d17)
+
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
