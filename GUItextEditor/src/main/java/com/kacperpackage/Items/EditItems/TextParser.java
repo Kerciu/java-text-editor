@@ -31,9 +31,9 @@ public class TextParser {
 
         int startIndex;
         int endIndex;
-        for (int i = 0; i < occurrences.length; ++i) {
+        for (int occurrence : occurrences) {
             try {
-                startIndex = occurrences[i];
+                startIndex = occurrence;
                 endIndex = startIndex + pattern.length();
                 highlighter.addHighlight(startIndex, endIndex, painter);
             } catch (BadLocationException e) {
