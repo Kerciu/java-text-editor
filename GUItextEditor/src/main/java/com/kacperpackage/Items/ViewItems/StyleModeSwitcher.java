@@ -7,7 +7,7 @@ import java.awt.*;
 public class StyleModeSwitcher {
     private enum ModeToSwitch {
         DARK_MODE, LIGHT_MODE
-    };
+    }
 
     public static void switchToDarkMode(TextEditorGUI textEditorGUI) {
         setModeRecursively(textEditorGUI.getContentPane(), ModeToSwitch.DARK_MODE);

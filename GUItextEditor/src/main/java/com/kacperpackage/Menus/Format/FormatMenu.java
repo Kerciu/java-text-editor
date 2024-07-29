@@ -6,8 +6,8 @@ import main.java.com.kacperpackage.Handlers.Executors.FormatMenuExecutor;
 import javax.swing.*;
 
 public class FormatMenu {
-    private JMenu formatMenu;
-    private FormatMenuExecutor formatMenuExecutor;
+    private final JMenu formatMenu;
+    private final FormatMenuExecutor formatMenuExecutor;
 
     public FormatMenu(TextEditorGUI textEditorGUI) {
         formatMenu = new JMenu("Format");

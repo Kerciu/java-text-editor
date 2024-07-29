@@ -8,8 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class FontColorer {
-    private TextEditorGUI textEditorGUI;
-    private FontMenuDialog fontMenuDialog;
+    private final TextEditorGUI textEditorGUI;
+    private final FontMenuDialog fontMenuDialog;
     private JPanel currentColorBox;
 
     public FontColorer(TextEditorGUI textEditorGUI, FontMenuDialog fontMenuDialog) {

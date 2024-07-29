@@ -8,9 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class TextAlignMenuItem {
-    private String direction;
-    private TextAlignMenu textAlignMenu;
-    private JTextArea textArea;
+    private final String direction;
+    private final TextAlignMenu textAlignMenu;
+    private final JTextArea textArea;
 
     public TextAlignMenuItem(String direction, TextAlignMenu textAlignMenu, JTextArea textArea) {
         if (!direction.equals("Left") && !direction.equals("Right")) {

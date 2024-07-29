@@ -8,8 +8,8 @@ import main.java.com.kacperpackage.Menus.Format.TextAlignMenu;
 import javax.swing.*;
 
 public class FormatMenuExecutor implements Executor{
-    private TextEditorGUI textEditorGUI;
-    private JMenu formatMenu;
+    private final TextEditorGUI textEditorGUI;
+    private final JMenu formatMenu;
 
     public FormatMenuExecutor(TextEditorGUI textEditorGUI, JMenu formatMenu) {
         this.textEditorGUI = textEditorGUI;

@@ -8,8 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class TextFindMenu {
-    private TextEditorGUI textEditorGUI;
-    private JMenu editMenu;
+    private final TextEditorGUI textEditorGUI;
+    private final JMenu editMenu;
 
     public TextFindMenu(TextEditorGUI textEditorGUI, JMenu editMenu) {
         this.textEditorGUI = textEditorGUI;

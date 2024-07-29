@@ -7,8 +7,8 @@ import main.java.com.kacperpackage.Menus.View.ZoomMenu;
 import javax.swing.*;
 
 public class ViewMenuExecutor implements Executor{
-    private TextEditorGUI textEditorGUI;
-    private JMenu viewMenu;
+    private final TextEditorGUI textEditorGUI;
+    private final JMenu viewMenu;
 
     public ViewMenuExecutor(TextEditorGUI textEditorGUI, JMenu viewMenu) {
         this.textEditorGUI = textEditorGUI;

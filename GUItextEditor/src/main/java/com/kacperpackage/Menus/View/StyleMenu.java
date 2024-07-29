@@ -7,9 +7,9 @@ import main.java.com.kacperpackage.Items.ViewItems.ZoomChooser;
 import javax.swing.*;
 
 public class StyleMenu {
-    private TextEditorGUI textEditorGUI;
-    private JMenu styleMenu;
-    private JMenu viewMenu;
+    private final TextEditorGUI textEditorGUI;
+    private final JMenu styleMenu;
+    private final JMenu viewMenu;
 
     public StyleMenu(TextEditorGUI textEditorGUI, JMenu viewMenu) {
         this.textEditorGUI = textEditorGUI;

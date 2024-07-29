@@ -13,11 +13,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class EditMenuExecutor implements Executor{
-    private TextEditorGUI textEditorGUI;
-    private EditMenu editMenu;
+    private final TextEditorGUI textEditorGUI;
+    private final EditMenu editMenu;
 
     // manage undo and redo
-    private UndoManager undoManager;
+    private final UndoManager undoManager;
 
     public EditMenuExecutor(TextEditorGUI textEditorGUI, EditMenu editMenu) {
         this.textEditorGUI = textEditorGUI;

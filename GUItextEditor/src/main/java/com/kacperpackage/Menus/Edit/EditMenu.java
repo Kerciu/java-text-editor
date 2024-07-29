@@ -9,9 +9,9 @@ import javax.swing.event.UndoableEditListener;
 import javax.swing.undo.UndoManager;
 
 public class EditMenu {
-    private TextEditorGUI textEditorGUI;
-    private JMenu editMenu;
-    private EditMenuExecutor editMenuExecutor;
+    private final TextEditorGUI textEditorGUI;
+    private final JMenu editMenu;
+    private final EditMenuExecutor editMenuExecutor;
 
     public EditMenu(TextEditorGUI textEditorGUI) {
         this.textEditorGUI = textEditorGUI;

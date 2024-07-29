@@ -8,8 +8,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class FontStyler {
-    private TextEditorGUI textEditorGUI;
-    private FontMenuDialog fontMenuDialog;
+    private final TextEditorGUI textEditorGUI;
+    private final FontMenuDialog fontMenuDialog;
     private JTextField currentFontStyleField;
 
     public FontStyler(TextEditorGUI textEditorGUI, FontMenuDialog fontMenuDialog) {

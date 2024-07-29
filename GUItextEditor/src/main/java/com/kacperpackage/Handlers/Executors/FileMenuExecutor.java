@@ -12,9 +12,9 @@ import java.awt.event.ActionListener;
 import java.io.*;
 
 public class FileMenuExecutor implements Executor{
-    private TextEditorGUI textEditorGUI;
-    private JMenu fileMenu;
-    private File workingFile;
+    private final TextEditorGUI textEditorGUI;
+    private final JMenu fileMenu;
+    private final File workingFile;
 
     public FileMenuExecutor(TextEditorGUI textEditorGUI, JMenu fileMenu) {
         this.textEditorGUI = textEditorGUI;

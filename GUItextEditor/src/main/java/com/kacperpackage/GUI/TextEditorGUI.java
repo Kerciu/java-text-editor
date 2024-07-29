@@ -9,7 +9,7 @@ import java.io.*;
 
 public class TextEditorGUI extends JFrame {
     // file explorer
-    private JFileChooser fileChooser;
+    private final JFileChooser fileChooser;
     private JTextArea textArea;
 
     public TextEditorGUI() {

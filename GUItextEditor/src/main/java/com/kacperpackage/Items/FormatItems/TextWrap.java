@@ -7,8 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class TextWrap {
-    private TextEditorGUI textEditorGUI;
-    private JMenu formatMenu;
+    private final TextEditorGUI textEditorGUI;
+    private final JMenu formatMenu;
     JCheckBoxMenuItem textWrapCheckBox;
 
     public TextWrap(TextEditorGUI textEditorGUI, JMenu formatMenu) {

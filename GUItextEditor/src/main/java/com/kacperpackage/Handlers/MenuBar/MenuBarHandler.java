@@ -9,7 +9,7 @@ import main.java.com.kacperpackage.Menus.View.ViewMenu;
 import javax.swing.*;
 
 public class MenuBarHandler {
-    private TextEditorGUI textEditorGUI;
+    private final TextEditorGUI textEditorGUI;
     private FileMenu fileMenu;
     private EditMenu editMenu;
     private FormatMenu formatMenu;

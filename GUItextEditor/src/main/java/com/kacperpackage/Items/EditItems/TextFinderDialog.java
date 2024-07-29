@@ -12,7 +12,7 @@ import java.awt.event.WindowEvent;
 
 public class TextFinderDialog extends JDialog {
     private static TextFinderDialog instance;
-    private TextEditorGUI textEditorGUI;
+    private final TextEditorGUI textEditorGUI;
     private JTextField patternTextField;
     private JButton patternFindButton;
 

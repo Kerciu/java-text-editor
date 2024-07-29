@@ -8,9 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class FontMenu {
-    private TextEditorGUI textEditorGUI;
-    private JMenu formatMenu;
-    private JMenu fontMenu;
+    private final TextEditorGUI textEditorGUI;
+    private final JMenu formatMenu;
+    private final JMenu fontMenu;
 
     public FontMenu(TextEditorGUI textEditorGUI, JMenu formatMenu) {
         this.textEditorGUI = textEditorGUI;

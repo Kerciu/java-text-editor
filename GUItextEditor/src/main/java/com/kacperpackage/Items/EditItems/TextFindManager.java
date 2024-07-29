@@ -9,7 +9,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class TextFindManager {
-    private TextEditorGUI textEditorGUI;
+    private final TextEditorGUI textEditorGUI;
 
     public TextFindManager(TextEditorGUI textEditorGUI, JDialog textFinderDialog) {
         this.textEditorGUI = textEditorGUI;

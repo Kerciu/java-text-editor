@@ -6,9 +6,9 @@ import main.java.com.kacperpackage.Items.FormatItems.TextAlignMenuItem;
 import javax.swing.*;
 
 public class TextAlignMenu {
-    private TextEditorGUI textEditorGUI;
-    private JMenu formatMenu;
-    private JMenu textAlignMenu;
+    private final TextEditorGUI textEditorGUI;
+    private final JMenu formatMenu;
+    private final JMenu textAlignMenu;
 
     public TextAlignMenu(TextEditorGUI textEditorGUI, JMenu formatMenu) {
         this.textEditorGUI = textEditorGUI;

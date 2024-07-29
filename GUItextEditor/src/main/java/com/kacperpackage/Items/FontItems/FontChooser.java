@@ -9,7 +9,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class FontChooser {
-    private TextEditorGUI textEditorGUI;
+    private final TextEditorGUI textEditorGUI;
     private JTextField currentFontField;
 
     FontChooser(TextEditorGUI textEditorGUI, JPanel fontPanel) {

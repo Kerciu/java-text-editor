@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class FontMenuDialog extends JDialog {
-    private TextEditorGUI textEditorGUI;
+    private final TextEditorGUI textEditorGUI;
     private FontChooser fontChooser;
     private FontStyler fontStyler;
     private FontSizer fontSizer;

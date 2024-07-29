@@ -8,12 +8,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ZoomChooser {
-    private TextEditorGUI textEditorGUI;
-    private JMenu zoomMenu;
+    private final TextEditorGUI textEditorGUI;
+    private final JMenu zoomMenu;
 
     private enum zoomDirection{
         ZOOM_IN, ZOOM_OUT, ZOOM_RESTORE
-    };
+    }
 
     private static final int zoomDefaultSize = 12;
 

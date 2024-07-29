@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 
 public class TextReplacerDialog extends JDialog {
     private static TextReplacerDialog instance;
-    private TextEditorGUI textEditorGUI;
+    private final TextEditorGUI textEditorGUI;
     private JTextField patternTextField;
     private JTextField goalTextField;
     private JButton patternReplaceButton;

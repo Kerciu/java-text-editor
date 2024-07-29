@@ -6,8 +6,8 @@ import main.java.com.kacperpackage.Handlers.Executors.FileMenuExecutor;
 import javax.swing.*;
 
 public class FileMenu {
-    private TextEditorGUI textEditorGUI;
-    private JMenu fileMenu;
+    private final TextEditorGUI textEditorGUI;
+    private final JMenu fileMenu;
 
     public FileMenu(TextEditorGUI textEditorGUI) {
         this.textEditorGUI = textEditorGUI;

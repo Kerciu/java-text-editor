@@ -7,8 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class StyleChooser {
-    private TextEditorGUI textEditorGUI;
-    private JMenu styleMenu;
+    private final TextEditorGUI textEditorGUI;
+    private final JMenu styleMenu;
 
     public StyleChooser(TextEditorGUI textEditorGUI, JMenu styleMenu) {
         this.textEditorGUI = textEditorGUI;
