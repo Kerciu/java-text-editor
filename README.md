@@ -72,6 +72,6 @@ For questions, feedback, or support:
 - **Instagram**: [@kxcper.gorski](https://www.instagram.com/kxcper.gorski)
 - **X**: [@Kerciuu](https://x.com/Kerciuu)
 - **GitHub**: [Kerciu](https://github.com/Kerciu)
-- **Support**: Email [kerciuuu@gmail.com](mailto:kacper.gorski.contact@gmail.com)
+- **Support**: Email [kacper.gorski.contact@gmail.com](mailto:kacper.gorski.contact@gmail.com)
 
 For issues, please open a GitHub Issue.
