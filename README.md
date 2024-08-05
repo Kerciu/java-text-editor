@@ -9,7 +9,7 @@ A simple text editor built in Java that provides basic text editing functionalit
 ## 📥 Installation
 1. Clone the repository:
     ```sh
-    git clone https://github.com/your_username/java-text-editor.git
+    git clone https://github.com/Kerciu/java-text-editor.git
     ```
 
 2. Navigate to the project directory:
