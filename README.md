@@ -6,27 +6,6 @@ A simple text editor built in Java that provides basic text editing functionalit
 ## 🔧 Requirements
 - Java 22 ☕️
 
-## 📥 Installation
-1. Clone the repository:
-    ```sh
-    git clone https://github.com/Kerciu/java-text-editor.git
-    ```
-
-2. Navigate to the project directory:
-    ```sh
-    cd java-text-editor
-    ```
-
-3. Compile the project:
-    ```sh
-    javac -d out/production/java-text-editor src/**/*.java
-    ```
-
-4. Run the application:
-    ```sh
-    java -cp out/production/java-text-editor com.kacperpackage.MainClass.MainClass
-    ```
-
 ## 📝 Notes
 - Ensure that you have Java 22 installed and properly configured on your system. 🌟
 - The `javac` and `java` commands assume that you have a Java Development Kit (JDK) installed. 🛠️
